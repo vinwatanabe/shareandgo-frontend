@@ -37,9 +37,9 @@ function User() {
                     { 
                         users && users.length>0 && (
                             users.map(
-                                (user) => 
+                                (user,index) => 
                                 (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{user._id}</td>
                                         <td>{user.firstname}</td>
                                         <td>{user.lastname}</td>
