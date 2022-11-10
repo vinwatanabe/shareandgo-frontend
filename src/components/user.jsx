@@ -40,11 +40,11 @@ function User() {
                                 (user,index) => 
                                 (
                                     <tr key={index}>
-                                        <td>{user._id}</td>
-                                        <td>{user.firstname}</td>
-                                        <td>{user.lastname}</td>
-                                        <td>{user.email}</td>
-                                        <td>{user.phone}</td>
+                                        <td key={index+"-id"}>{user._id}</td>
+                                        <td key={index+"-fn"}>{user.firstname}</td>
+                                        <td key={index+"-ln"}>{user.lastname}</td>
+                                        <td key={index+"-em"}>{user.email}</td>
+                                        <td key={index+"-ph"}>{user.phone}</td>
                                     </tr>
                                 )
                             )
