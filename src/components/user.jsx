@@ -24,13 +24,16 @@ function User() {
             <h2>Users</h2>
             <div className="table-responsive">
                 <table className="table">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">FIRSTNAME</th>
-                        <th scope="col">LASTNAME</th>
-                        <th scope="col">EMAIL</th>
-                        <th scope="col">PHONE</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">FIRSTNAME</th>
+                            <th scope="col">LASTNAME</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">PHONE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     { 
                         users && users.length>0 && (
                             users.map(
@@ -47,6 +50,7 @@ function User() {
                             )
                         )
                     }
+                    </tbody>
                 </table>
             </div>
         </>
