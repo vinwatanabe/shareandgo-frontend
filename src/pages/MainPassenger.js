@@ -12,6 +12,7 @@ const MainPassenger = () => {
 		'10/15/2022',
 		'9:45am',
 		'$58.42',
+		'/passenger-destination',
 	];
 
 	const allUsers = [];
@@ -39,6 +40,7 @@ const MainPassenger = () => {
 									date={userData[4]}
 									time={userData[5]}
 									price={userData[6]}
+									link={userData[7]}
 								/>
 							</div>
 						);
