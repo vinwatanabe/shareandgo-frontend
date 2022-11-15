@@ -1,0 +1,35 @@
+:root {
+	--SGGreen: #01d95e;
+	--SGDarkGreen: #1e874b;
+	--SGBlack: #171921;
+	--SGAlpha: rgba(0, 0, 0, 0);
+	--SGFont: 'Open Sans', sans-serif;
+	--SGTitleSize: 1.5em;
+	--SGTextAssetSize: 1em;
+	--SGTextSize: 1em;
+}
+
+.search-destination .form-control {
+	display: inline-block;
+	border: var(--SGGreen) solid 2px;
+}
+
+.search-destination input[type='text'] {
+	width: 85%;
+	border-radius: 25px 0px 0px 25px;
+}
+
+.btn-search {
+	box-sizing: border-box;
+	background-color: var(--SGGreen);
+	width: 15%;
+	padding: 3px;
+	transform: translateY(-2px);
+	border: var(--SGGreen) solid 2px;
+	border-radius: 0px 25px 25px 0px;
+}
+
+.btn-search:hover {
+	background-color: var(--SGDarkGreen);
+	border: var(--SGDarkGreen) solid 2px;
+}
