@@ -1,59 +1,48 @@
-import {Routes,Route} from 'react-router-dom'
-import Home from './components/home'
-import User from './components/user'
-import Car from './components/car'
-import Address from './components/address'
-import PaymentMethod from './components/payment_method'
-import Ride from './components/ride'
-import Passenger from './components/passenger'
-import SeatRequest from './components/seat_request'
-import NavBar from './components/navBar'
-import NotFound from './components/notFound'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
+
+import Gateway from './pages/Gateway';
+import Registration from './pages/Registration';
+import Login from './pages/Login';
+import MainPassenger from './pages/MainPassenger';
+import DestinationPassenger from './pages/DestinationPassenger';
+import DriversAvailable from './pages/DriversAvailable';
+import RideInfo from './pages/RideInfo';
+import RideStatus from './pages/RideStatus';
+import RideCompleteReview from './pages/RideCompleteReview';
+import UserAccountPage from './pages/UserAccountPage';
+import Messages from './pages/Messages';
+import MessageContent from './pages/MessageContent';
+import Header from './components/Header';
 
 function App() {
-  return (
-    <div className="App">
-      <NavBar/>
-      <Routes>
-            <Route
-            path="/"
-            element = {<Home/>}
-            />
-            <Route
-            path="/user"
-            element = {<User/>}
-            />
-            <Route
-            path="/car"
-            element = {<Car/>}
-            />
-            <Route
-            path="/address"
-            element = {<Address/>}
-            />
-            <Route
-            path="/payment_method"
-            element = {<PaymentMethod/>}
-            />
-            <Route
-            path="ride"
-            element = {<Ride/>}
-            />
-            <Route
-            path="passenger"
-            element = {<Passenger/>}
-            />
-            <Route
-            path="seat_request"
-            element = {<SeatRequest/>}
-            />
-            <Route
-            path="*"
-            element = {<NotFound/>}
-            />
-        </Routes>
-    </div>
-  );
+	return (
+		<>
+			<Router>
+				<Header />
+				<div className='container-sm'>
+					<Routes>
+						<Route path='/' element={<Gateway />} />
+						<Route path='/registration' element={<Registration />} />
+						<Route path='/login' element={<Login />} />
+						<Route path='/main-passenger' element={<MainPassenger />} />
+						<Route
+							path='/passenger-destination'
+							element={<DestinationPassenger />}
+						/>
+						<Route path='/drivers-available' element={<DriversAvailable />} />
+						<Route path='/ride-info' element={<RideInfo />} />
+						<Route path='/ride-status' element={<RideStatus />} />
+						<Route path='/ride-complete' element={<RideCompleteReview />} />
+						<Route path='/user-account' element={<UserAccountPage />} />
+						<Route path='/messages' element={<Messages />} />
+						<Route path='/message-content' element={<MessageContent />} />
+					</Routes>
+				</div>
+			</Router>
+		</>
+	);
 }
 
 export default App;

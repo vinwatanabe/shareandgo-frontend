@@ -1,0 +1,63 @@
+:root {
+	--SGGreen: #01d95e;
+	--SGDarkGreen: #1e874b;
+	--SGBlack: #171921;
+	--SGAlpha: rgba(0, 0, 0, 0);
+	--SGFont: 'Open Sans', sans-serif;
+	--SGTitleSize: 1.5em;
+	--SGTextAssetSize: 1em;
+	--SGTextSize: 1em;
+	--SGTextDetails: 0.75em;
+}
+
+.ride-card {
+	display: flex;
+	flex-flow: row nowrap;
+	background-color: white;
+	padding: 15px;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 12px;
+}
+
+.driver-picture {
+	display: flex;
+	background-color: var(--SGGreen);
+	width: 82px;
+	height: 82px;
+	border-radius: 100%;
+	overflow: hidden;
+	justify-content: center;
+	margin: 0;
+}
+
+.driver-picture img {
+	height: 100%;
+}
+
+.text-important {
+	color: var(--SGGreen);
+	font-size: var(--SGTextSize);
+	font-weight: 700;
+}
+
+.ride-details {
+	font-size: var(--SGTextDetails);
+	color: var(--SGBlack);
+}
+
+.ride-info {
+	text-align: right;
+}
+
+.star span {
+	color: var(--SGGreen);
+}
+
+.star .material-symbols-outlined {
+	font-size: 18px;
+}
+
+.star .filled {
+	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
