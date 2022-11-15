@@ -12,7 +12,7 @@ const MainPassenger = () => {
 		'10/15/2022',
 		'9:45am',
 		'$58.42',
-		'/passenger-destination',
+		'/ride-info',
 	];
 
 	const allUsers = [];
