@@ -13,7 +13,7 @@ const Registration = () => {
 	return (
 		<>
 			<h2 className='text-title text-center mb-4'>Registration</h2>
-			<form className='row g-4 mb-5'>
+			<form className='row col-12 col-md-6 g-4 mb-5 mx-auto'>
 				<div className='col-md-6'>
 					<input
 						type='text'
@@ -108,7 +108,7 @@ const Registration = () => {
 			</form>
 
 			<h2 className='text-title text-center mb-4'>Payment Information</h2>
-			<form className='row g-4 mb-4'>
+			<form className='row col-12 col-md-6 g-4 mb-4 mx-auto'>
 				<div className='col-12'>
 					<input
 						type='text'
@@ -152,7 +152,7 @@ const Registration = () => {
 
 			<ButtonPrimary
 				text='Register'
-				className='col-4 mx-auto d-block'
+				className='col-6 col-md-3 mx-auto d-block'
 				link='/main-passenger'
 				clickAction=''
 			/>

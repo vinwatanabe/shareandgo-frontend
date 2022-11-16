@@ -15,7 +15,11 @@ const DestinationPassenger = () => {
 		<>
 			<div className='text-center'>
 				<figure>
-					<img src={ScheduleIcon} alt='Schedule illustration' />
+					<img
+						src={ScheduleIcon}
+						className='img-fluid'
+						alt='Schedule illustration'
+					/>
 				</figure>
 			</div>
 

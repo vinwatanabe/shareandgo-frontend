@@ -6,7 +6,7 @@ import ButtonSecondary from '../components/ButtonSecondary';
 const Gateway = () => {
 	return (
 		<>
-			<section className='col-md-4 position-absolute top-50 start-50 translate-middle'>
+			<section className='col-10 col-sm-6 col-md-6 col-lg-4 position-absolute top-50 start-50 translate-middle'>
 				<figure className='text-center'>
 					<img
 						src={ShareGoLogo}
@@ -14,19 +14,23 @@ const Gateway = () => {
 						alt='Share & Go Logo'
 					/>
 				</figure>
-				<div className='row text-center d-block'>
-					<ButtonPrimary
-						text='Register'
-						className='col-6'
-						link='/registration'
-						clickAction=''
-					/>
-					<ButtonSecondary
-						text='Login'
-						className='col-6'
-						link='/login'
-						clickAction=''
-					/>
+				<div className='row row-cols-2 g-3 text-center'>
+					<div className='col'>
+						<ButtonPrimary
+							text='Register'
+							className='col-12'
+							link='/registration'
+							clickAction=''
+						/>
+					</div>
+					<div className='col'>
+						<ButtonSecondary
+							text='Login'
+							className='col-12'
+							link='/login'
+							clickAction=''
+						/>
+					</div>
 				</div>
 			</section>
 		</>
