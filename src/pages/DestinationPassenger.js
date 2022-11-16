@@ -67,7 +67,7 @@ const DestinationPassenger = () => {
 				<ButtonPrimary
 					text="Let's go"
 					className='col-6 col-md-3 mx-auto d-block'
-					link='/drivers-available'
+					link='/available-drivers'
 					clickAction=''
 				/>
 			</div>
