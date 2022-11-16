@@ -1,9 +1,8 @@
 import React from 'react';
-import SearchBar from '../components/SearchBar';
 import RideCard from '../components/RideCard';
 import DriverImage from '../images/profile-picture-mockup.jpg'; //delete after implementation
 
-const MainPassenger = () => {
+const DriversAvailable = () => {
 	// Delete after implementation
 	const user = [
 		{ DriverImage },
@@ -18,16 +17,14 @@ const MainPassenger = () => {
 
 	const allUsers = [];
 
-	for (let i = 0; i < 8; i++) {
+	for (let i = 0; i < 20; i++) {
 		allUsers.push(user);
 	}
 
 	return (
 		<>
-			<SearchBar />
-
 			<div>
-				<h2 className='text-title mb-4'>Next scheduled rides</h2>
+				<h2 className='text-title mb-4 text-center'>Available Drivers</h2>
 
 				<div className='row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3'>
 					{allUsers.map((userData) => {
@@ -52,4 +49,4 @@ const MainPassenger = () => {
 	);
 };
 
-export default MainPassenger;
+export default DriversAvailable;

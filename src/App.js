@@ -7,7 +7,7 @@ import Registration from './pages/Registration';
 import Login from './pages/Login';
 import MainPassenger from './pages/MainPassenger';
 import DestinationPassenger from './pages/DestinationPassenger';
-import DriversAvailable from './pages/DriversAvailable';
+import AvailableDrivers from './pages/AvailableDrivers';
 import RideInfo from './pages/RideInfo';
 import RideStatus from './pages/RideStatus';
 import RideCompleteReview from './pages/RideCompleteReview';
@@ -31,7 +31,7 @@ function App() {
 							path='/passenger-destination'
 							element={<DestinationPassenger />}
 						/>
-						<Route path='/drivers-available' element={<DriversAvailable />} />
+						<Route path='/available-drivers' element={<AvailableDrivers />} />
 						<Route path='/ride-info' element={<RideInfo />} />
 						<Route path='/ride-status' element={<RideStatus />} />
 						<Route path='/ride-complete' element={<RideCompleteReview />} />
