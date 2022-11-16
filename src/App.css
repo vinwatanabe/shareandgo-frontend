@@ -41,46 +41,6 @@ h2.text-title {
 	font-weight: 700;
 }
 
-nav.bg-dark {
-	background-color: var(--SGGreen) !important;
-}
-
-.navbar-toggler .navbar-toggler-icon {
-	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
-
-.navbar-toggler.navbar-toggler {
-	border-color: var(--SGAlpha);
-}
-
-.navbar-nav {
-	--bs-nav-link-color: white;
-}
-
-.btn-close {
-	background: transparent
-		url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")
-		center/1em auto no-repeat;
-	color: white;
-	opacity: 1;
-}
-
-.offcanvas.offcanvas-top {
-	height: 100%;
-}
-
-.offcanvas-body,
-.offcanvas-header {
-	background-color: var(--SGGreen);
-	color: white;
-	font-size: var(--SGTextAssetSize);
-	font-weight: 700;
-}
-
-.offcanvas-body li {
-	font-size: var(--SGTitleSize);
-}
-
 input[type='text'],
 input[type='email'],
 input[type='password'],
@@ -116,49 +76,4 @@ input[type='time']::placeholder {
 
 .form-select option {
 	background-color: var(--SGBlack);
-}
-
-.btn-primary {
-	background-color: var(--SGGreen);
-	border: var(--SGGreen);
-	font-size: var(--SGTextAssetSize);
-	font-weight: 700;
-	border-radius: 25px;
-	padding: 12px 0px;
-}
-
-.btn-primary:hover {
-	background-color: var(--SGDarkGreen);
-}
-
-.btn-secondary {
-	background-color: var(--SGAlpha);
-	border: var(--SGGreen) 2px solid;
-	font-size: var(--SGTextAssetSize);
-	font-weight: 700;
-	color: var(--SGGreen);
-	border-radius: 25px;
-	padding: 12px 00px;
-}
-
-.btn-secondary:hover {
-	background-color: var(--SGDarkGreen);
-	border: var(--SGDarkGreen) 2px solid;
-}
-
-.btn-secondary.btn-white {
-	border: white 2px solid;
-	color: white;
-}
-
-.btn-secondary.btn-white:hover {
-	background-color: white;
-	border: white 2px solid;
-	color: var(--SGBlack);
-}
-
-.bg-img {
-	background-image: url('./images/sharego-icon.png'),
-		url('./images/sharego-icon.png');
-	background-repeat: no-repeat, no-repeat;
 }

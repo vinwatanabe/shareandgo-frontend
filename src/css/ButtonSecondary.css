@@ -1,0 +1,25 @@
+.btn-secondary {
+	background-color: var(--SGAlpha);
+	border: var(--SGGreen) 2px solid;
+	font-size: var(--SGTextAssetSize);
+	font-weight: 700;
+	color: var(--SGGreen);
+	border-radius: 25px;
+	padding: 12px 00px;
+}
+
+.btn-secondary:hover {
+	background-color: var(--SGDarkGreen);
+	border: var(--SGDarkGreen) 2px solid;
+}
+
+.btn-secondary.btn-white {
+	border: white 2px solid;
+	color: white;
+}
+
+.btn-secondary.btn-white:hover {
+	background-color: white;
+	border: white 2px solid;
+	color: var(--SGBlack);
+}
