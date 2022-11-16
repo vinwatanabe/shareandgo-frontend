@@ -1,0 +1,12 @@
+.btn-primary {
+	background-color: var(--SGGreen);
+	border: var(--SGGreen);
+	font-size: var(--SGTextAssetSize);
+	font-weight: 700;
+	border-radius: 25px;
+	padding: 12px 0px;
+}
+
+.btn-primary:hover {
+	background-color: var(--SGDarkGreen);
+}
