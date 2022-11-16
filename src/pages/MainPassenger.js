@@ -27,7 +27,7 @@ const MainPassenger = () => {
 			<SearchBar />
 
 			<div>
-				<h2 className='text-title mb-4'>Next scheduled rides</h2>
+				<h2 className='text-title mb-4 text-center'>Next scheduled rides</h2>
 
 				<div className='row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3'>
 					{allUsers.map((userData) => {

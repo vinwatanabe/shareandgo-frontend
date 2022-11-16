@@ -1,29 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../css/Header.css';
 import ButtonSecondary from './ButtonSecondary';
 import LogoHeader from '../images/ShareGoLogo-header.png';
-import Notifications from '../images/notification-icon.png';
 
 const Header = () => {
 	return (
 		<>
 			<nav className='navbar navbar-dark bg-dark mb-5'>
-				<div className='container d-flex'>
+				<div className='container d-flex align-items-center'>
 					<button
 						class='navbar-toggler'
 						type='button'
 						data-bs-toggle='offcanvas'
 						data-bs-target='#offcanvasDarkNavbar'
 						aria-controls='offcanvasDarkNavbar'>
-						<span class='navbar-toggler-icon'></span>
+						<span class='material-symbols-outlined icon'>menu</span>
 					</button>
 
-					<Link to={'/main-passenger'} className='nav-brand'>
+					<Link
+						to={'/main-passenger'}
+						className='nav-brand flex-fill text-center'>
 						<img src={LogoHeader} alt='Share & Go Logo' />
 					</Link>
 
 					<Link to={'/messages'}>
-						<img src={Notifications} alt='Notifications' />
+						<span class='material-symbols-outlined icon filled'>
+							notifications
+						</span>
 					</Link>
 
 					<div

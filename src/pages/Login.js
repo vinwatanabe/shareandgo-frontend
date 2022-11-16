@@ -17,8 +17,8 @@ const Login = () => {
 				<figure className='mb-5'>
 					<img src={ShareGoIcon} alt='Share & Go icon' />
 				</figure>
-				<form className='d-grid col-10 col-md-6 gap-4 mb-4 mx-auto'>
-					<div className=''>
+				<form className='row col-12 col-md-6 g-4 mb-4 mx-auto'>
+					<div className='col-md-12'>
 						<input
 							type='email'
 							id='email'
@@ -28,7 +28,7 @@ const Login = () => {
 						/>
 					</div>
 
-					<div className=''>
+					<div className='col-md-12'>
 						<input
 							type='password'
 							id='password'
@@ -41,7 +41,7 @@ const Login = () => {
 
 				<ButtonPrimary
 					text='Login'
-					className='col-10 col-md-4 mx-auto d-block'
+					className='col-6 col-md-3 mx-auto d-block'
 					link='/main-passenger'
 					clickAction=''
 				/>
