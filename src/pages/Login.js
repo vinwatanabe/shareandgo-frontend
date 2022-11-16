@@ -17,7 +17,6 @@ const Login = () => {
 				<figure className='mb-5'>
 					<img src={ShareGoIcon} alt='Share & Go icon' />
 				</figure>
-
 				<form className='d-grid col-10 col-md-6 gap-4 mb-4 mx-auto'>
 					<div className=''>
 						<input

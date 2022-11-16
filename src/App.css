@@ -84,6 +84,8 @@ nav.bg-dark {
 input[type='text'],
 input[type='email'],
 input[type='password'],
+input[type='date'],
+input[type='time'],
 .form-select {
 	border: 2px white solid;
 	border-radius: 25px;
@@ -91,16 +93,24 @@ input[type='password'],
 	color: white;
 }
 
+::-webkit-calendar-picker-indicator {
+	filter: invert(1);
+}
+
 input[type='text']:focus,
 input[type='email']:focus,
-input[type='password']:focus {
+input[type='password']:focus,
+input[type='date']:focus,
+input[type='time']:focus {
 	background-color: var(--SGAlpha);
 	color: white;
 }
 
 input[type='text']::placeholder,
 input[type='email']::placeholder,
-input[type='password']::placeholder {
+input[type='password']::placeholder,
+input[type='date']::placeholder,
+input[type='time']::placeholder {
 	color: white;
 }
 
