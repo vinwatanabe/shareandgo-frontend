@@ -43,6 +43,7 @@ function App() {
 						/>
 						<Route path='/ride-complete' element={<RideCompleteReview />} />
 						<Route path='/user-account' element={<UserAccountPage />} />
+						<Route path='/account/edit' element={<Registration />} />
 						<Route path='/messages' element={<Messages />} />
 						<Route path='/message-content' element={<MessageContent />} />
 					</Routes>
