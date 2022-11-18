@@ -12,6 +12,15 @@ a {
 	text-decoration: none;
 }
 
+p a {
+	text-decoration: underline;
+	color: var(--SGGreen);
+}
+
+p a:hover {
+	color: var(--SGDarkGreen);
+}
+
 body {
 	background-color: var(--SGBlack);
 }
