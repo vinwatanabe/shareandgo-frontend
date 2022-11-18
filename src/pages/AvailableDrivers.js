@@ -1,24 +1,24 @@
 import React from 'react';
-import RideCard from '../components/RideCard';
+import AvailableDriverCard from '../components/AvailableDriverCard';
 import DriverImage from '../images/profile-picture-mockup.jpg'; //delete after implementation
 
 const DriversAvailable = () => {
 	// Delete after implementation
-	const user = [
-		{ DriverImage },
-		'Mathew Pitts',
-		'700 Royal Street',
-		'31254 Charlotte Avenue',
-		'10/15/2022',
-		'9:45am',
-		'$58.42',
-		'/ride-info',
-	];
+	const driver = {
+		name: 'Mathew Pitts',
+		rating: '4',
+		destination: 'Abbotsford, BC',
+		totalAvailableSeats: '5',
+		availableSeats: '3',
+		rideDate: '10/15/2022',
+		rideTime: '9:45am',
+		rideTotalPrice: '128.95',
+	};
 
 	const allUsers = [];
 
 	for (let i = 0; i < 20; i++) {
-		allUsers.push(user);
+		allUsers.push(driver);
 	}
 
 	return (
@@ -27,18 +27,22 @@ const DriversAvailable = () => {
 				<h2 className='text-title mb-4 text-center'>Available Drivers</h2>
 
 				<div className='row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3'>
-					{allUsers.map((userData) => {
+					{allUsers.map((userData, index) => {
 						return (
-							<div className='col'>
-								<RideCard
+							<div className='col' key={index}>
+								<AvailableDriverCard
 									driverPhoto={DriverImage}
-									driverName={userData[1]}
-									pickupLocation={userData[2]}
-									destination={userData[3]}
-									date={userData[4]}
-									time={userData[5]}
-									price={userData[6]}
-									link={userData[7]}
+									driverName={driver.name}
+									driverRating={driver.rating}
+									destination={driver.destination}
+									availableSeats={driver.availableSeats}
+									date={driver.rideDate}
+									time={driver.rideTime}
+									price={(
+										driver.rideTotalPrice /
+										(driver.totalAvailableSeats - driver.availableSeats + 1)
+									).toFixed(2)}
+									link='/ride-info'
 								/>
 							</div>
 						);

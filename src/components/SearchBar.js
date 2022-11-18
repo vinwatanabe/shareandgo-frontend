@@ -24,7 +24,7 @@ const SearchBar = () => {
 					/>
 
 					<ButtonPrimary
-						text={<span class='material-symbols-outlined'>search</span>}
+						text={<span className='material-symbols-outlined'>search</span>}
 						className='btn-search'
 						link='/passenger-destination'
 						clickAction=''

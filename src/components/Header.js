@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/Header.css';
 import ButtonSecondary from './ButtonSecondary';
-import LogoHeader from '../images/ShareGoLogo-header.png';
+import LogoHeader from '../images/ShareGoLogo-header.svg';
 
 const Header = () => {
 	return (
@@ -10,12 +10,12 @@ const Header = () => {
 			<nav className='navbar navbar-dark bg-dark mb-5'>
 				<div className='container d-flex align-items-center'>
 					<button
-						class='navbar-toggler'
+						className='navbar-toggler'
 						type='button'
 						data-bs-toggle='offcanvas'
 						data-bs-target='#offcanvasDarkNavbar'
 						aria-controls='offcanvasDarkNavbar'>
-						<span class='material-symbols-outlined icon'>menu</span>
+						<span className='material-symbols-outlined icon'>menu</span>
 					</button>
 
 					<Link
@@ -25,30 +25,30 @@ const Header = () => {
 					</Link>
 
 					<Link to={'/messages'}>
-						<span class='material-symbols-outlined icon filled'>
+						<span className='material-symbols-outlined icon filled'>
 							notifications
 						</span>
 					</Link>
 
 					<div
-						class='offcanvas offcanvas-top text-bg-dark'
-						tabindex='-1'
+						className='offcanvas offcanvas-top text-bg-dark'
+						tabIndex='-1'
 						id='offcanvasDarkNavbar'
 						aria-labelledby='offcanvasDarkNavbarLabel'>
-						<div class='offcanvas-header'>
+						<div className='offcanvas-header'>
 							<h5
-								class='offcanvas-title mx-auto d-block'
+								className='offcanvas-title mx-auto d-block'
 								id='offcanvasDarkNavbarLabel'>
 								<img src={LogoHeader} alt='Share & Go' />
 							</h5>
 							<button
 								type='button'
-								class='btn-close btn-close-white'
+								className='btn-close btn-close-white'
 								data-bs-dismiss='offcanvas'
 								aria-label='Close'></button>
 						</div>
-						<div class='offcanvas-body'>
-							<ul class='navbar-nav flex-grow-1 pe-3 position-absolute top-50 start-50 translate-middle'>
+						<div className='offcanvas-body'>
+							<ul className='navbar-nav flex-grow-1 pe-3 position-absolute top-50 start-50 translate-middle'>
 								<li
 									className='nav-item text-center'
 									data-bs-dismiss='offcanvas'>

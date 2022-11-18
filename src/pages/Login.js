@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ShareGoIcon from '../images/sharego-icon.png';
+import ShareGoIcon from '../images/ShareGo-icon.svg';
 import ButtonPrimary from '../components/ButtonPrimary';
 
 const Login = () => {

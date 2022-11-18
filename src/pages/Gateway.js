@@ -1,5 +1,5 @@
 import React from 'react';
-import ShareGoLogo from '../images/ShareGoLogo.png';
+import ShareGoLogo from '../images/ShareGoLogo.svg';
 import ButtonPrimary from '../components/ButtonPrimary';
 import ButtonSecondary from '../components/ButtonSecondary';
 
