@@ -30,12 +30,13 @@ const MainPassenger = () => {
 				<h2 className='text-title mb-4 text-center'>Next scheduled rides</h2>
 
 				<div className='row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3'>
-					{allUsers.map((userData) => {
+					{allUsers.map((userData, index) => {
 						return (
-							<div className='col'>
+							<div className='col' key={index}>
 								<RideCard
 									driverPhoto={DriverImage}
 									driverName={userData[1]}
+									driverRating='3'
 									pickupLocation={userData[2]}
 									destination={userData[3]}
 									date={userData[4]}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ScheduleIcon from '../images/schedule.png';
+import ScheduleIcon from '../images/schedule.svg';
 import ButtonPrimary from '../components/ButtonPrimary';
 
 const DestinationPassenger = () => {

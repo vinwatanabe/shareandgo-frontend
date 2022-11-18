@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../css/RideCard.css';
 import RatingStars from './RatingStars';
 
-const RideCard = ({
+const AvailableDriverCard = ({
 	driverPhoto,
 	driverName,
 	driverRating,
-	pickupLocation,
 	destination,
+	availableSeats,
 	date,
 	time,
 	price,
@@ -27,18 +26,28 @@ const RideCard = ({
 
 					<RatingStars rating={driverRating} />
 
-					<p className='ride-details'>From: {pickupLocation}</p>
-					<p className='ride-details'>To: {destination}</p>
+					<div className='destination d-flex align-items-center'>
+						<span className='material-symbols-outlined card-icon me-2'>
+							directions_car
+						</span>
+						<p className='details'>{destination}</p>
+					</div>
+					<div className='seats-available d-flex align-items-center'>
+						<span className='material-symbols-outlined card-icon me-2'>
+							person
+						</span>
+						<p className='details'>{availableSeats} seats available</p>
+					</div>
 				</div>
 				<div className='ride-info'>
 					<p className='ride-details'>{date}</p>
 					<p className='ride-details'>{time}</p>
 					<br></br>
-					<p className='text-important'>{price}</p>
+					<p className='text-important'>${price}</p>
 				</div>
 			</div>
 		</Link>
 	);
 };
 
-export default RideCard;
+export default AvailableDriverCard;

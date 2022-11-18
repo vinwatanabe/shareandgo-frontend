@@ -90,9 +90,13 @@ const RideInfo = () => {
 					</div>
 					<div className='col-12'>
 						<h2 className='text-title'>
-							{ride.rideTotalPrice / (ride.totalSeats - ride.availableSeats)}{' '}
+							$
+							{(
+								ride.rideTotalPrice /
+								(ride.totalSeats - ride.availableSeats + 1)
+							).toFixed(2)}{' '}
 							<span className='small'>each</span>
-							<span className='total-price'>| {ride.rideTotalPrice}</span>
+							<span className='total-price'>| ${ride.rideTotalPrice}</span>
 						</h2>
 					</div>
 				</div>

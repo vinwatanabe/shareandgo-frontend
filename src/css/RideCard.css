@@ -1,15 +1,3 @@
-:root {
-	--SGGreen: #01d95e;
-	--SGDarkGreen: #1e874b;
-	--SGBlack: #171921;
-	--SGAlpha: rgba(0, 0, 0, 0);
-	--SGFont: 'Open Sans', sans-serif;
-	--SGTitleSize: 1.5em;
-	--SGTextAssetSize: 1em;
-	--SGTextSize: 1em;
-	--SGTextDetails: 0.75em;
-}
-
 .ride-card {
 	display: flex;
 	flex-flow: row nowrap;
