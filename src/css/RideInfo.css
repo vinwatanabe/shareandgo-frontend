@@ -1,0 +1,59 @@
+:root {
+	--SGGreen: #01d95e;
+	--SGDarkGreen: #1e874b;
+	--SGBlack: #171921;
+	--SGAlpha: rgba(0, 0, 0, 0);
+	--SGFont: 'Open Sans', sans-serif;
+	--SGTitleSize: 1.5em;
+	--SGTextAssetSize: 1em;
+	--SGTextSize: 1em;
+	--SGTextDetails: 0.75em;
+}
+
+.ride-info-card {
+	background-color: white;
+	border-radius: 12px;
+	color: var(--SGBlack);
+	font-size: var(--SGTextSize);
+	padding: 30px;
+}
+
+.ride-info-card p {
+	color: var(--SGBlack);
+}
+
+.details {
+	color: var(--SGBlack);
+}
+
+.driver-picture {
+	display: flex;
+	background-color: var(--SGGreen);
+	width: 120px;
+	height: 120px;
+	border-radius: 100%;
+	overflow: hidden;
+	justify-content: center;
+	margin: 0;
+}
+
+.driver-picture img {
+	height: 100%;
+}
+
+.card-icon {
+	color: var(--SGGreen);
+}
+
+.text-title span {
+	color: var(--SGGreen);
+}
+
+.text-title .small {
+	font-size: var(--SGTextDetails);
+}
+
+.text-title .total-price {
+	font-weight: 200;
+	color: grey;
+}

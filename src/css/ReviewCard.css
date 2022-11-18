@@ -1,0 +1,27 @@
+:root {
+	--SGGreen: #01d95e;
+	--SGDarkGreen: #1e874b;
+	--SGBlack: #171921;
+	--SGAlpha: rgba(0, 0, 0, 0);
+	--SGFont: 'Open Sans', sans-serif;
+	--SGTitleSize: 1.5em;
+	--SGTextAssetSize: 1em;
+	--SGTextSize: 1em;
+	--SGTextDetails: 0.75em;
+}
+
+.passenger-picture {
+	display: flex;
+	background-color: var(--SGGreen);
+	width: 42px;
+	height: 42px;
+	border-radius: 100%;
+	overflow: hidden;
+	justify-content: center;
+	margin: 0;
+	left: 0;
+}
+
+.passenger-picture img {
+	height: 100%;
+}
