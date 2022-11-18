@@ -12,6 +12,7 @@ import RideInfo from './pages/RideInfo';
 import RideStatus from './pages/RideStatus';
 import RideCompleteReview from './pages/RideCompleteReview';
 import UserAccountPage from './pages/UserAccountPage';
+import UserAccountEdit from './pages/UserAccountEdit';
 import Messages from './pages/Messages';
 import MessageContent from './pages/MessageContent';
 import Header from './components/Header';
@@ -43,7 +44,7 @@ function App() {
 						/>
 						<Route path='/ride-complete' element={<RideCompleteReview />} />
 						<Route path='/user-account' element={<UserAccountPage />} />
-						<Route path='/account/edit' element={<Registration />} />
+						<Route path='/account/edit' element={<UserAccountEdit />} />
 						<Route path='/messages' element={<Messages />} />
 						<Route path='/message-content' element={<MessageContent />} />
 					</Routes>
