@@ -35,15 +35,20 @@ input[type='email'],
 input[type='password'],
 input[type='date'],
 input[type='time'],
+textarea,
 .form-select {
 	border: 2px white solid;
 	border-radius: 25px;
-	background-color: var(--SGAlpha);
-	color: white;
+	background-color: var(--SGAlpha) !important;
+	color: white !important;
 }
 
 ::-webkit-calendar-picker-indicator {
 	filter: invert(1);
+}
+
+textarea {
+	height: 120px !important;
 }
 
 input[type='text']:focus,
@@ -52,7 +57,7 @@ input[type='password']:focus,
 input[type='date']:focus,
 input[type='time']:focus {
 	background-color: var(--SGAlpha);
-	color: white;
+	color: white !important;
 }
 
 input[type='text']::placeholder,

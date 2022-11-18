@@ -21,17 +21,20 @@ const RatingStars = ({ rating }) => {
 	return (
 		<div>
 			{starsRating.map((boolStar, index) => {
-				//return boolStar === 1 ? starFilled : starOutline;
 				if (boolStar === 1) {
 					return (
 						<i className='star' key={index}>
-							<span className='material-symbols-outlined filled'>star</span>
+							<span id={index} className='material-symbols-outlined filled'>
+								star
+							</span>
 						</i>
 					);
 				} else {
 					return (
 						<i className='star' key={index}>
-							<span className='material-symbols-outlined'>star</span>
+							<span id={index} className='material-symbols-outlined'>
+								star
+							</span>
 						</i>
 					);
 				}

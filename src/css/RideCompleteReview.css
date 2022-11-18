@@ -1,0 +1,18 @@
+.ride-complete .driver-picture {
+	display: flex;
+	background-color: var(--SGGreen);
+	width: 120px;
+	height: 120px;
+	border-radius: 100%;
+	overflow: hidden;
+	justify-content: center;
+	margin: 0;
+}
+
+.ride-complete .driver-picture img {
+	height: 100%;
+}
+
+.star-select span {
+	cursor: pointer;
+}
