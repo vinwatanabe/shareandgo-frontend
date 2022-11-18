@@ -150,7 +150,7 @@ const RideInfo = () => {
 				<ButtonPrimary
 					text='Request Ride'
 					className='col-8 col-xs-10 col-sm-6 col-md-4 col-lg-3 mx-auto d-block'
-					link='/ride-status'
+					link='/waiting-ride'
 					clickAction=''
 				/>
 			</div>

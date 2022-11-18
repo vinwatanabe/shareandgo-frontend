@@ -33,7 +33,14 @@ function App() {
 						/>
 						<Route path='/available-drivers' element={<AvailableDrivers />} />
 						<Route path='/ride-info' element={<RideInfo />} />
-						<Route path='/ride-status' element={<RideStatus />} />
+						<Route
+							path='/waiting-ride'
+							element={<RideStatus status='waiting' />}
+						/>
+						<Route
+							path='/ride-confirmed'
+							element={<RideStatus status='confirmed' />}
+						/>
 						<Route path='/ride-complete' element={<RideCompleteReview />} />
 						<Route path='/user-account' element={<UserAccountPage />} />
 						<Route path='/messages' element={<Messages />} />
