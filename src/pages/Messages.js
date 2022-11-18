@@ -29,9 +29,11 @@ const Messages = () => {
 		<>
 			<div>
 				<h2 className='text-title text-center mb-4'>Your messages(2)</h2>
-				{messages.map((user) => {
+				{messages.map((user, index) => {
 					return (
-						<div className='col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4 mx-auto mb-3'>
+						<div
+							className='col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4 mx-auto mb-3'
+							key={index}>
 							<MessageCard
 								driverPhoto={DriverImage}
 								driverName={user.name}
