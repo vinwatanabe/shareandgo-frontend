@@ -10,6 +10,114 @@ const Registration = () => {
 		setValues(auxValues);
 	}
 
+	const passengerBank = (
+		<div>
+			<h2 className='text-title text-center mb-4'>Payment Information</h2>
+			<form className='row col-12 col-md-6 g-4 mb-4 mx-auto'>
+				<div className='col-12'>
+					<input
+						type='text'
+						id='nameCard'
+						placeholder='Name on card'
+						className='form-control'
+						onChange={(e) => handleChange(e)}
+					/>
+				</div>
+
+				<div className='col-12'>
+					<input
+						type='text'
+						id='cardNumber'
+						placeholder='Card Number'
+						className='form-control'
+						onChange={(e) => handleChange(e)}
+					/>
+				</div>
+
+				<div className='col-md-6'>
+					<input
+						type='text'
+						id='expirationDate'
+						placeholder='Expiration Date'
+						className='form-control'
+						onChange={(e) => handleChange(e)}
+					/>
+				</div>
+
+				<div className='col-md-6'>
+					<input
+						type='text'
+						id='csc'
+						placeholder='CSC'
+						className='form-control'
+						onChange={(e) => handleChange(e)}
+					/>
+				</div>
+			</form>
+
+			<ButtonPrimary
+				text='Register'
+				className='col-6 col-md-3 mx-auto d-block'
+				link='/main-passenger'
+				clickAction=''
+			/>
+		</div>
+	);
+
+	const driverBank = (
+		<div>
+			<h2 className='text-title text-center mb-4'>Bank Information</h2>
+			<form className='row col-12 col-md-6 g-4 mb-4 mx-auto'>
+				<div className='col-12'>
+					<input
+						type='text'
+						id='bankName'
+						placeholder='Bank name'
+						className='form-control'
+						onChange={(e) => handleChange(e)}
+					/>
+				</div>
+
+				<div className='col-md-6'>
+					<input
+						type='text'
+						id='institutionNumber'
+						placeholder='Institution #'
+						className='form-control'
+						onChange={(e) => handleChange(e)}
+					/>
+				</div>
+
+				<div className='col-md-6'>
+					<input
+						type='text'
+						id='transitNumber'
+						placeholder='Transit #'
+						className='form-control'
+						onChange={(e) => handleChange(e)}
+					/>
+				</div>
+
+				<div className='col-12'>
+					<input
+						type='text'
+						id='accountNumber'
+						placeholder='Account Number'
+						className='form-control'
+						onChange={(e) => handleChange(e)}
+					/>
+				</div>
+			</form>
+
+			<ButtonPrimary
+				text='Register'
+				className='col-6 col-md-3 mx-auto d-block'
+				link='/main-passenger'
+				clickAction=''
+			/>
+		</div>
+	);
+
 	return (
 		<>
 			<h2 className='text-title text-center mb-4'>Registration</h2>
@@ -107,55 +215,11 @@ const Registration = () => {
 				</div>
 			</form>
 
-			<h2 className='text-title text-center mb-4'>Payment Information</h2>
-			<form className='row col-12 col-md-6 g-4 mb-4 mx-auto'>
-				<div className='col-12'>
-					<input
-						type='text'
-						id='nameCard'
-						placeholder='Name on card'
-						className='form-control'
-						onChange={(e) => handleChange(e)}
-					/>
-				</div>
-
-				<div className='col-12'>
-					<input
-						type='text'
-						id='cardNumber'
-						placeholder='Card Number'
-						className='form-control'
-						onChange={(e) => handleChange(e)}
-					/>
-				</div>
-
-				<div className='col-md-6'>
-					<input
-						type='text'
-						id='expirationDate'
-						placeholder='Expiration Date'
-						className='form-control'
-						onChange={(e) => handleChange(e)}
-					/>
-				</div>
-
-				<div className='col-md-6'>
-					<input
-						type='text'
-						id='csc'
-						placeholder='CSC'
-						className='form-control'
-						onChange={(e) => handleChange(e)}
-					/>
-				</div>
-			</form>
-
-			<ButtonPrimary
-				text='Register'
-				className='col-6 col-md-3 mx-auto d-block'
-				link='/main-passenger'
-				clickAction=''
-			/>
+			{values.accountType === 'passenger'
+				? passengerBank
+				: values.accountType === 'driver'
+				? driverBank
+				: ''}
 		</>
 	);
 };
