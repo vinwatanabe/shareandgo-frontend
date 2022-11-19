@@ -52,7 +52,7 @@ const MessageContent = () => {
 
 	return (
 		<>
-			<div>
+			<div className='message-chat-name'>
 				<div className='d-flex align-items-center justify-content-start'>
 					<div className='col-2'>
 						<Link to='/messages'>

@@ -1,3 +1,10 @@
+.message-chat-name {
+	background-color: var(--SGBlack);
+	position: sticky;
+	top: 0;
+	padding-top: 15px;
+}
+
 .message-picture figure {
 	display: flex;
 	background-color: var(--SGGreen);
