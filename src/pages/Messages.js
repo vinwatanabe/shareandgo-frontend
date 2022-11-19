@@ -40,7 +40,7 @@ const Messages = () => {
 								destination={user.destination}
 								date={user.date}
 								time={user.time}
-								link='/ride-info'
+								link='/message-content'
 							/>
 						</div>
 					);
