@@ -41,7 +41,7 @@ const Login = () => {
 					localStorage.setItem("userToken",res.data.token);
 					localStorage.setItem("userID",res.data._id);
 					localStorage.setItem("userFirstName",res.firstname);
-                    localStorage.setItem("userType",res.accounttype);
+					localStorage.setItem("userType",res.accounttype);
 					values.accountType === 'driver' ? window.location.href = '/main-driver' : window.location.href = '/main-passenger';
 				}
 			} catch (err) {
