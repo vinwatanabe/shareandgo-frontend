@@ -40,8 +40,8 @@ const Login = () => {
 					// If no error, save user data to session storage
 					localStorage.setItem("userToken",res.data.token);
 					localStorage.setItem("userID",res.data._id);
-					localStorage.setItem("userFirstName",values.firstName);
-                    localStorage.setItem("userType",values.accountType);
+					localStorage.setItem("userFirstName",res.firstName);
+                    localStorage.setItem("userType",res.accountType);
 					values.accountType === 'driver' ? window.location.href = '/main-driver' : window.location.href = '/main-passenger';
 				}
 			} catch (err) {
