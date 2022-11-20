@@ -16,6 +16,13 @@ const Gateway = () => {
 			window.location.href = "/main-driver";
 		}
 	}
+	else{
+		// cleanup session
+		localStorage.setItem("userToken", null);
+		localStorage.setItem("userID", null);
+		localStorage.setItem("userFirstName", null);
+		localStorage.setItem("userType", null);
+	}
 	return (
 		<>
 			<section className='col-10 col-sm-6 col-md-6 col-lg-4 position-absolute top-50 start-50 translate-middle'>
