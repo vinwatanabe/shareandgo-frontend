@@ -59,16 +59,16 @@ const Registration = () => {
 				if(res.data.error) {
 					// If error, display error message
 					setError(res.data.error);
-					throw new Error(res.data.error);
 				}
 				else{
 					// If no error, save user data to session storage
 					localStorage.setItem("userToken",res.data.token);
 					localStorage.setItem("userID",res.data._id);
 					localStorage.setItem("userFirstName",values.firstName);
+                    localStorage.setItem("userType",values.accountType);
 				}
 			} catch (err) {
-				console.log(err);
+				setError(err.response.data.error);
 			}
 			// Validate existing payment data: if exists, register payment method, if not, move forward
 			let payment = {};
@@ -95,9 +95,9 @@ const Registration = () => {
                     };
                 }
                 try {	
-                    await axios.post(process.env.REACT_APP_BACKEND_URL+"payment/create/", payment);
+                    const res = await axios.post(process.env.REACT_APP_BACKEND_URL+"payment/create/", payment);
                 } catch (err) {
-                    console.log(err);
+                    console.log(err.response.data.error);
                 }
             }
 			// Check Session Storage
