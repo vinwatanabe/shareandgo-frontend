@@ -4,6 +4,18 @@ import ButtonPrimary from '../components/ButtonPrimary';
 import ButtonSecondary from '../components/ButtonSecondary';
 
 const Gateway = () => {
+	// check if user is logged in
+	const localStorage = window.localStorage;
+	const userID = localStorage.getItem("userID");
+	const userType = localStorage.getItem("userType");
+	if(userID && userType) {
+		// redirect to each user type's main page
+		if(userType === "passenger") {
+			window.location.href = "/main-passenger";
+		} else if(userType === "driver") {
+			window.location.href = "/main-driver";
+		}
+	}
 	return (
 		<>
 			<section className='col-10 col-sm-6 col-md-6 col-lg-4 position-absolute top-50 start-50 translate-middle'>
