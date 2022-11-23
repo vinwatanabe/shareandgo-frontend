@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import ButtonPrimary from '../components/ButtonPrimary';
-import InputMask from "react-input-mask";
+import InputMask from 'react-input-mask';
 import axios from 'axios';
 
 // Canadian postal code mask
 const firstLetter = /(?!.*[DFIOQU])[A-VXY]/i;
 const letter = /(?!.*[DFIOQU])[A-Z]/i;
 const digit = /[0-9]/;
-const mask = [firstLetter, digit, letter, " ", digit, letter, digit];
+const mask = [firstLetter, digit, letter, ' ', digit, letter, digit];
 // Session and page-transition variables
 const localStorage = window.localStorage;
 
 const Registration = () => {
 	const [values, setValues] = useState('');
-    const [error, setError] = useState("");
+	const [error, setError] = useState('');
 
 	function handleChange(event) {
 		const auxValues = { ...values };
@@ -21,24 +21,17 @@ const Registration = () => {
 		setValues(auxValues);
 	}
 
-    const handleSubmit = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// Fields Validation
-		if(!values.firstName) 
-			setError('Please enter your first name');
-		else if(!values.lastName) 
-			setError('Please enter your last name');
-		else if(!values.email) 
-			setError('Please enter an email address');
-		else if(!values.phone) 
-			setError('Please enter your phone number');
-		else if(!values.accountType) 
-			setError('Please select an account type');
-		else if(!values.password) 
-			setError('Please enter a password');
-		else if(!values.confirmPassword) 
-			setError('Please confirm your password');
-		else if(values.confirmPassword !== values.password)
+		if (!values.firstName) setError('Please enter your first name');
+		else if (!values.lastName) setError('Please enter your last name');
+		else if (!values.email) setError('Please enter an email address');
+		else if (!values.phone) setError('Please enter your phone number');
+		else if (!values.accountType) setError('Please select an account type');
+		else if (!values.password) setError('Please enter a password');
+		else if (!values.confirmPassword) setError('Please confirm your password');
+		else if (values.confirmPassword !== values.password)
 			setError('Passwords do not match');
 		else {
 			setError('');
@@ -55,55 +48,73 @@ const Registration = () => {
 			};
 			try {
 				// Send user object to server
-				const res = await axios.post(process.env.REACT_APP_BACKEND_URL+"user/create", user);
-				if(res.data.error) {
+				const res = await axios.post(
+					process.env.REACT_APP_BACKEND_URL + 'user/create',
+					user
+				);
+				if (res.data.error) {
 					// If error, display error message
 					setError(res.data.error);
-				}
-				else{
+				} else {
 					// If no error, save user data to session storage
-					localStorage.setItem("userToken",res.data.token);
-					localStorage.setItem("userID",res.data._id);
-					localStorage.setItem("userFirstName",values.firstName);
-                    localStorage.setItem("userType",values.accountType);
+					localStorage.setItem('userToken', res.data.token);
+					localStorage.setItem('userID', res.data._id);
+					localStorage.setItem('userFirstName', values.firstName);
+					localStorage.setItem('userType', values.accountType);
 				}
 			} catch (err) {
 				setError(err.response.data.error);
 			}
 			// Validate existing payment data: if exists, register payment method, if not, move forward
 			let payment = {};
-            if(values.accountType === 'passenger'){
-                if(values.nameCard && values.numberCard && values.expirationDate && values.csc && values.zipCode) {
-                    payment = {
-                        type: "card",
-                        name: values.nameCard,
-                        pan: values.numberCard,
-                        expiration: values.expirationCard,
-                        csc: values.csc,
-                        address_id: values.zipCard,
-                    };
-                }
-            }
-            else{
-                if(values.bankName && values.institutionNumber && values.transitNumber && values.accountNumber) {
-                    payment = {
-                        type: "bank",
-                        name: values.bankName,
-                        pan: values.accountNumber,
-                        institution: values.institutionNumber,
-                        transit: values.transitNumber
-                    };
-                }
-                try {	
-                    const res = await axios.post(process.env.REACT_APP_BACKEND_URL+"payment/create/", payment);
-                } catch (err) {
-                    console.log(err.response.data.error);
-                }
-            }
+			if (values.accountType === 'passenger') {
+				if (
+					values.nameCard &&
+					values.numberCard &&
+					values.expirationDate &&
+					values.csc &&
+					values.zipCode
+				) {
+					payment = {
+						type: 'card',
+						name: values.nameCard,
+						pan: values.numberCard,
+						expiration: values.expirationCard,
+						csc: values.csc,
+						address_id: values.zipCard,
+					};
+				}
+			} else {
+				if (
+					values.bankName &&
+					values.institutionNumber &&
+					values.transitNumber &&
+					values.accountNumber
+				) {
+					payment = {
+						type: 'bank',
+						name: values.bankName,
+						pan: values.accountNumber,
+						institution: values.institutionNumber,
+						transit: values.transitNumber,
+					};
+				}
+				try {
+					const res = await axios.post(
+						process.env.REACT_APP_BACKEND_URL + 'payment/create/',
+						payment
+					);
+					console.log(res);
+				} catch (err) {
+					console.log(err.response.data.error);
+				}
+			}
 			// Check Session Storage
-			if(localStorage.getItem('userToken')) {
+			if (localStorage.getItem('userToken')) {
 				// redirect to main page
-				values.accountType === 'driver' ? window.location.href = '/main-driver' : window.location.href = '/main-passenger';
+				values.accountType === 'driver'
+					? (window.location.href = '/main-driver')
+					: (window.location.href = '/main-passenger');
 			}
 		}
 	};
@@ -123,7 +134,7 @@ const Registration = () => {
 				</div>
 
 				<div className='col-12'>
-                    <InputMask 
+					<InputMask
 						mask='9999 9999 9999 9999'
 						maskPlaceholder='-'
 						type='text'
@@ -135,7 +146,7 @@ const Registration = () => {
 				</div>
 
 				<div className='col-md-6'>
-                    <InputMask 
+					<InputMask
 						mask='99/99'
 						maskPlaceholder='mm/yy'
 						type='text'
@@ -147,7 +158,7 @@ const Registration = () => {
 				</div>
 
 				<div className='col-md-6'>
-                    <InputMask 
+					<InputMask
 						mask='9999'
 						maskPlaceholder=' '
 						type='text'
@@ -158,8 +169,8 @@ const Registration = () => {
 					/>
 				</div>
 
-                <div className='col-md-6'>
-					<InputMask 
+				<div className='col-md-6'>
+					<InputMask
 						mask={mask}
 						maskPlaceholder='___ ___'
 						type='text'
@@ -169,7 +180,7 @@ const Registration = () => {
 						onChange={(e) => handleChange(e)}
 					/>
 				</div>
-                <div className="text-danger text-center" role="alert">
+				<div className='text-danger text-center' role='alert'>
 					{error}
 				</div>
 			</form>
@@ -198,7 +209,7 @@ const Registration = () => {
 				</div>
 
 				<div className='col-md-6'>
-                    <InputMask 
+					<InputMask
 						mask='999'
 						maskPlaceholder=' '
 						type='text'
@@ -210,7 +221,7 @@ const Registration = () => {
 				</div>
 
 				<div className='col-md-6'>
-                    <InputMask 
+					<InputMask
 						mask='99999'
 						maskPlaceholder=' '
 						type='text'
@@ -222,7 +233,7 @@ const Registration = () => {
 				</div>
 
 				<div className='col-12'>
-                    <InputMask 
+					<InputMask
 						mask='999999999999'
 						maskPlaceholder=' '
 						type='text'
@@ -232,7 +243,7 @@ const Registration = () => {
 						onChange={(e) => handleChange(e)}
 					/>
 				</div>
-                <div className="text-danger text-center" role="alert">
+				<div className='text-danger text-center' role='alert'>
 					{error}
 				</div>
 			</form>
@@ -281,7 +292,7 @@ const Registration = () => {
 				</div>
 
 				<div className='col-12'>
-                    <InputMask 
+					<InputMask
 						mask='999-999-9999'
 						maskPlaceholder='_'
 						type='text'
@@ -303,7 +314,7 @@ const Registration = () => {
 				</div>
 
 				<div className='col-md-6'>
-                    <InputMask 
+					<InputMask
 						mask='aa'
 						maskPlaceholder='-'
 						type='text'
