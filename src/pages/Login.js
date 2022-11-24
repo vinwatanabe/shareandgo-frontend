@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import ShareGoIcon from '../images/ShareGo-icon.svg';
 import ButtonPrimary from '../components/ButtonPrimary';
-import axios from 'axios';
+import User from '../controllers/User';
+
 
 const Login = () => {
 	const [values, setValues] = useState('');
@@ -28,27 +29,24 @@ const Login = () => {
 				email: values.email,
 				password: values.password
 			};
-			try {
-				// Send user object to server
-				const res = await axios.post(process.env.REACT_APP_BACKEND_URL+"user/login", user);
-				if(res.data.error) {
-					// If error, display error message
-					console.log(res);
-					setError(res.data.error);
+			// call login controller with user data
+			const res = await User.login(user) 
+			console.log(res)
+			if(res !== 'success') {
+				setError(res);
+			}
+			else{
+				const accountType = localStorage.getItem("userType");
+                if(accountType === 'driver'){
+					window.location.href = '/main-driver';
 				}
-				else{
-					// If no error, save user data to session storage
-					localStorage.setItem("userToken",res.data.token);
-					localStorage.setItem("userID",res.data._id);
-					localStorage.setItem("userFirstName",res.firstname);
-					localStorage.setItem("userType",res.accounttype);
-					values.accountType === 'driver' ? window.location.href = '/main-driver' : window.location.href = '/main-passenger';
+				else if(accountType === 'passenger'){
+					window.location.href = '/main-passenger';
 				}
-			} catch (err) {
-				setError(err.response.data.error);
 			}
 		}
 	};
+
 
 	return (
 		<>
