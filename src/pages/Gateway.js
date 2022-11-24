@@ -22,6 +22,7 @@ const Gateway = () => {
 		localStorage.setItem("userID", null);
 		localStorage.setItem("userFirstName", null);
 		localStorage.setItem("userType", null);
+		localStorage.clear();
 	}
 	return (
 		<>
