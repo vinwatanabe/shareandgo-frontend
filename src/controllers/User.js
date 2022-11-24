@@ -6,6 +6,11 @@ import axios from 'axios';
 const localStorage = window.localStorage;
 
 class User extends Component {
+	  constructor(props) {
+    super(props)
+    this.state = {
+      user: []
+	}}
 	// function to register a user
 	// call syntax: User.register(values);
 	register = async (objUser) => {
@@ -64,7 +69,7 @@ class User extends Component {
 				return res.data;
 			}
 		} catch (err) {
-			console.log(err.response.data.error);
+			// If error, display error message
 		}
 	};
 
@@ -152,9 +157,12 @@ class User extends Component {
 				console.log(res);
 				return res.data.error;
 			} else {
-				// If no error, return evaluations
-				console.log(res);
-				return res.data.evaluation;
+				// If no error, return evaluation
+				if (res.data.length > 0) {
+					return JSON.parse(res.data);
+				}
+				return [];
+
 			}
 		} catch (err) {
 			//
