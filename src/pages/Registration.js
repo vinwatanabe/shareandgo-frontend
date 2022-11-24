@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import ButtonPrimary from '../components/ButtonPrimary';
 import InputMask from 'react-input-mask';
-import axios from 'axios';
+import User from '../controllers/User';
+import Payment from '../controllers/Payment';
 
 // Canadian postal code mask
 const firstLetter = /(?!.*[DFIOQU])[A-VXY]/i;
 const letter = /(?!.*[DFIOQU])[A-Z]/i;
 const digit = /[0-9]/;
 const mask = [firstLetter, digit, letter, ' ', digit, letter, digit];
-// Session and page-transition variables
-const localStorage = window.localStorage;
 
 const Registration = () => {
 	const [values, setValues] = useState('');
@@ -46,25 +45,9 @@ const Registration = () => {
 				accounttype: values.accountType,
 				password: values.password,
 			};
-			try {
-				// Send user object to server
-				const res = await axios.post(
-					process.env.REACT_APP_BACKEND_URL + 'user/create',
-					user
-				);
-				if (res.data.error) {
-					// If error, display error message
-					setError(res.data.error);
-				} else {
-					// If no error, save user data to session storage
-					localStorage.setItem('userToken', res.data.token);
-					localStorage.setItem('userID', res.data._id);
-					localStorage.setItem('userFirstName', values.firstName);
-					localStorage.setItem('userType', values.accountType);
-				}
-			} catch (err) {
-				setError(err.response.data.error);
-			}
+			// call registration controller with user data
+			User.register(user);
+
 			// Validate existing payment data: if exists, register payment method, if not, move forward
 			let payment = {};
 			if (values.accountType === 'passenger') {
@@ -99,18 +82,10 @@ const Registration = () => {
 						transit: values.transitNumber,
 					};
 				}
-				try {
-					const res = await axios.post(
-						process.env.REACT_APP_BACKEND_URL + 'payment/create/',
-						payment
-					);
-					console.log(res);
-				} catch (err) {
-					console.log(err.response.data.error);
-				}
+				Payment.createPayment(payment);
 			}
 			// Check Session Storage
-			if (localStorage.getItem('userToken')) {
+			if (User.isLoggedIn()) {
 				// redirect to main page
 				values.accountType === 'driver'
 					? (window.location.href = '/main-driver')
