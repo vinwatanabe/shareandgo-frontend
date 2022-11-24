@@ -40,7 +40,7 @@ const UserAccountPage = () => {
 					<h2 className='text-title'>{user.name}</h2>
 
 					<div className='rating'>
-						<RatingStars rating={user.evaluation} />
+						<RatingStars rating={evaluation} />
 					</div>
 
 					<div className='text-center'>
@@ -61,51 +61,57 @@ const UserAccountPage = () => {
 						<p className='text-label'>Phone</p>
 						<p>{user.phone}</p>
 					</div>
+					{user.address[0] && (
+						<>
+							<div className='col'>
+								<p className='text-label'>City</p>
+								<p>{user.address[0].city}</p>
+							</div>
 
-					<div className='col'>
-						<p className='text-label'>City</p>
-						<p>{user.address[0].city}</p>
-					</div>
+							<div className='col'>
+								<p className='text-label'>Province</p>
+								<p>{user.address[0].province}</p>
+							</div>
 
-					<div className='col'>
-						<p className='text-label'>Province</p>
-						<p>{user.address[0].province}</p>
-					</div>
-
-					<div className='col'>
-						<p className='text-label'>Password</p>
-						<p>{user.password}</p>
-					</div>
+							<div className='col'>
+								<p className='text-label'>Password</p>
+								<p>{user.password}</p>
+							</div>
+						</>
+					)}
 				</div>
 
 				<hr className='mt-5 mb-5' />
+				{user.payment[0] && (
+					<>
+						<div className='mb-5'>
+							<h2 className='text-title text-center mb-4'>Payment information</h2>
 
-				<div className='mb-5'>
-					<h2 className='text-title text-center mb-4'>Payment information</h2>
+							<div className='row row-cols-1 row-cols-md-2 col-12 col-md-10 col-lg-8 col-xl-6 g-4 mx-auto text-center'>
+								<div className='col'>
+									<p className='text-label'>Payment type</p>
+									<p>{user.payment.type}.toUpperCase()</p>
+								</div>
+						
+								<div className='col'>
+									<p className='text-label'>Name on card</p>
+									<p>{user.payment[0].name}</p>
+								</div>
 
-					<div className='row row-cols-1 row-cols-md-2 col-12 col-md-10 col-lg-8 col-xl-6 g-4 mx-auto text-center'>
-						<div className='col'>
-							<p className='text-label'>Payment type</p>
-							<p>{user.payment.type}.toUpperCase()</p>
+								<div className='col'>
+									<p className='text-label'>Card number</p>
+									<p>{user.payment[0].pan}</p>
+								</div>
+
+								<div className='col'>
+									<p className='text-label'>Expiration date</p>
+									<p>{user.payment[0].expiration}</p>
+								</div>
+							
+							</div>
 						</div>
-
-						<div className='col'>
-							<p className='text-label'>Name on card</p>
-							<p>{user.payment[0].name}</p>
-						</div>
-
-						<div className='col'>
-							<p className='text-label'>Card number</p>
-							<p>{user.payment[0].pan}</p>
-						</div>
-
-						<div className='col'>
-							<p className='text-label'>Expiration date</p>
-							<p>{user.payment[0].expiration}</p>
-						</div>
-					</div>
-				</div>
-
+					</>
+				)}
 				<ButtonSecondary
 					text='Delete account'
 					className='col-8 col-xs-10 col-sm-6 col-md-4 col-lg-3 mx-auto d-block'
