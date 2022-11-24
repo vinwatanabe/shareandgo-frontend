@@ -33,7 +33,7 @@ function App() {
 		}
 
 		if (!authenticated) {
-			return navigate('/');
+			window.location.href = '/';
 		} else {
 			return children;
 		}
