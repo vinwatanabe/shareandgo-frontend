@@ -134,5 +134,31 @@ class User extends Component {
             return (err.response.data.error);
         }
     }
+
+    // function to get a user's evaluations
+    async getEvaluation () {
+        try {
+            // Send user object to server
+            const res = await axios.get(process.env.REACT_APP_BACKEND_URL+"user/evaluation/"+localStorage.getItem("userID"),{
+                headers: {
+                    // Get user token from session storage
+                    'x-access-token': localStorage.getItem('userToken'),
+                },
+            });
+            if(res.data.error) {
+                // If error, send back error message
+                console.log(res);
+                return (res.data.error);
+            }
+            else{
+                // If no error, return evaluations
+                console.log(res);
+                return res.data.evaluation;
+            }
+        } catch (err) {
+            //
+            return (err.response.data.error);
+        }
+    }
 }
 export default new User();
