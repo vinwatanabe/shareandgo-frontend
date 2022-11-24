@@ -1,7 +1,7 @@
 {
   "name": "shareandgo-frontend",
   "version": "0.1.0",
-  "homepage": "https://gitname.github.io/react-gh-pages",
+  "homepage": "/",
   "private": true,
   "dependencies": {
     "@react-google-maps/api": "^2.16.1",
@@ -14,6 +14,7 @@
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
+    "react-input-mask": "^3.0.0-alpha.2",
     "react-jwt": "^1.1.7",
     "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",
@@ -52,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "dotenv": "^16.0.3",
     "gh-pages": "^4.0.0"
   }
 }

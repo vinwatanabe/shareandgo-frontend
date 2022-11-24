@@ -1,0 +1,17 @@
+.material-symbols-outlined {
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+:root {
+	--SGGreen: #01d95e;
+	--SGDarkGreen: #1e874b;
+	--SGBlack: #171921;
+	--SGGrey: #313131;
+	--SGLightGrey: #b1b1b1;
+	--SGAlpha: rgba(0, 0, 0, 0);
+	--SGFont: 'Open Sans', sans-serif;
+	--SGTitleSize: 1.5em;
+	--SGTextAssetSize: 1em;
+	--SGTextSize: 1em;
+	--SGTextDetails: 0.75em;
+}

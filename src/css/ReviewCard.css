@@ -1,0 +1,15 @@
+.passenger-picture {
+	display: flex;
+	background-color: var(--SGGreen);
+	width: 42px;
+	height: 42px;
+	border-radius: 100%;
+	overflow: hidden;
+	justify-content: center;
+	margin: 0;
+	left: 0;
+}
+
+.passenger-picture img {
+	height: 100%;
+}
