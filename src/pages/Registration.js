@@ -3,12 +3,13 @@ import ButtonPrimary from '../components/ButtonPrimary';
 import InputMask from 'react-input-mask';
 import User from '../controllers/User';
 import Payment from '../controllers/Payment';
+import Address from '../controllers/Address';
 
 // Canadian postal code mask
 const firstLetter = /(?!.*[DFIOQU])[A-VXY]/i;
 const letter = /(?!.*[DFIOQU])[A-Z]/i;
 const digit = /[0-9]/;
-const mask = [firstLetter, digit, letter, ' ', digit, letter, digit];
+const zipMask = [firstLetter, digit, letter, ' ', digit, letter, digit];
 
 const Registration = () => {
 	const [values, setValues] = useState('');
@@ -40,13 +41,18 @@ const Registration = () => {
 				lastname: values.lastName,
 				email: values.email,
 				phone: values.phone,
-				city: values.city,
-				province: values.province,
 				accounttype: values.accountType,
 				password: values.password,
 			};
 			// call registration controller with user data
-			User.register(user);
+			await User.register(user);
+			await Address.createAddress({	// Create address object
+				street: values.address,
+				city: values.city,
+				province: values.province,
+				zip: values.postalCode,
+			});
+
 
 			// Validate existing payment data: if exists, register payment method, if not, move forward
 			let payment = {};
@@ -146,7 +152,7 @@ const Registration = () => {
 
 				<div className='col-md-6'>
 					<InputMask
-						mask={mask}
+						mask={zipMask}
 						maskPlaceholder='___ ___'
 						type='text'
 						id='zipCode'
@@ -281,6 +287,16 @@ const Registration = () => {
 				<div className='col-md-6'>
 					<input
 						type='text'
+						id='address'
+						placeholder='Address'
+						className='form-control'
+						onChange={(e) => handleChange(e)}
+					/>
+				</div>
+
+				<div className='col-md-6'>
+					<input
+						type='text'
 						id='city'
 						placeholder='City'
 						className='form-control'
@@ -295,6 +311,18 @@ const Registration = () => {
 						type='text'
 						id='province'
 						placeholder='Province'
+						className='form-control'
+						onChange={(e) => handleChange(e)}
+					/>
+				</div>
+
+				<div className='col-md-6'>
+					<InputMask
+						mask={zipMask}
+						maskPlaceholder='___ ___'
+						type='text'
+						id='zip'
+						placeholder='ZIP Code'
 						className='form-control'
 						onChange={(e) => handleChange(e)}
 					/>
