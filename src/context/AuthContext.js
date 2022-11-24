@@ -14,7 +14,7 @@ const AuthContext = ({ children }) => {
 	useEffect(() => {
 		const token = localStorage.getItem('userToken');
 
-		if (token) {
+		if (token && token === !null) {
 			// axios.defaults.header.post['Content-Type'] = 'application/json';
 			// axios.defaults.headers = `x-access-token ${JSON.parse(token)}`;
 			setAuthenticated(true);

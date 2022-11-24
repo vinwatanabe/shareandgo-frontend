@@ -3,10 +3,9 @@ import ShareGoIcon from '../images/ShareGo-icon.svg';
 import ButtonPrimary from '../components/ButtonPrimary';
 import User from '../controllers/User';
 
-
 const Login = () => {
 	const [values, setValues] = useState('');
-	const [error, setError] = useState("");
+	const [error, setError] = useState('');
 
 	function handleChange(event) {
 		const auxValues = { ...values };
@@ -18,35 +17,31 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// Fields Validation
-		if(!values.email) 
-			setError('Please enter an email address');
-		else if(!values.password) 
-			setError('Please enter a password');
+		if (!values.email) setError('Please enter an email address');
+		else if (!values.password) setError('Please enter a password');
 		else {
 			setError('');
 			// Prepare user object
 			const user = {
 				email: values.email,
-				password: values.password
+				password: values.password,
 			};
+
+			console.log(JSON.stringify(user));
 			// call login controller with user data
-			const res = await User.login(user) 
-			console.log(res)
-			if(res !== 'success') {
+			const res = await User.login(user);
+			if (res !== 'success') {
 				setError(res);
-			}
-			else{
-				const accountType = localStorage.getItem("userType");
-                if(accountType === 'driver'){
+			} else {
+				const accountType = localStorage.getItem('userType');
+				if (accountType === 'driver') {
 					window.location.href = '/main-driver';
-				}
-				else if(accountType === 'passenger'){
+				} else if (accountType === 'passenger') {
 					window.location.href = '/main-passenger';
 				}
 			}
 		}
 	};
-
 
 	return (
 		<>
@@ -74,7 +69,7 @@ const Login = () => {
 							onChange={(e) => handleChange(e)}
 						/>
 					</div>
-					<div className="text-danger text-center" role="alert">
+					<div className='text-danger text-center' role='alert'>
 						{error}
 					</div>
 				</form>
