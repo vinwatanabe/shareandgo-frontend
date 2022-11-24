@@ -5,24 +5,29 @@ import '../css/UserAccountPage.css';
 import DriverImage from '../images/profile-picture-mockup.jpg';
 import RatingStars from '../components/RatingStars';
 import ButtonSecondary from '../components/ButtonSecondary';
+import User from '../controllers/User';
 
 const UserAccountPage = () => {
 	// Delete after implementation
-	const user = {
-		name: 'Ezra Melton',
-		evaluation: '4.2',
-		email: 'ezra.melton@gmail.com',
-		phone: '+1 778 386 9965',
-		city: 'New Westminster',
-		province: 'British Columbia',
-		password: '********',
-		payment: {
-			cardCompany: 'MasterCard',
-			nameOnCard: 'Ezra T. Melton',
-			cardNumber: '**********361',
-			expirationDate: '2025/06',
-		},
-	};
+	// const user = {
+	// 	name: 'Ezra Melton',
+	// 	evaluation: '4.2',
+	// 	email: 'ezra.melton@gmail.com',
+	// 	phone: '+1 778 386 9965',
+	// 	city: 'New Westminster',
+	// 	province: 'British Columbia',
+	// 	password: '********',
+	// 	payment: {
+	// 		cardCompany: 'MasterCard',
+	// 		nameOnCard: 'Ezra T. Melton',
+	// 		cardNumber: '**********361',
+	// 		expirationDate: '2025/06',
+	// 	},
+	// };
+
+	const user = User.getUser();
+	const evaluation = User.getEvaluation();
+
 
 	return (
 		<>
@@ -59,12 +64,12 @@ const UserAccountPage = () => {
 
 					<div className='col'>
 						<p className='text-label'>City</p>
-						<p>{user.city}</p>
+						<p>{user.address[0].city}</p>
 					</div>
 
 					<div className='col'>
 						<p className='text-label'>Province</p>
-						<p>{user.province}</p>
+						<p>{user.address[0].province}</p>
 					</div>
 
 					<div className='col'>
@@ -80,23 +85,23 @@ const UserAccountPage = () => {
 
 					<div className='row row-cols-1 row-cols-md-2 col-12 col-md-10 col-lg-8 col-xl-6 g-4 mx-auto text-center'>
 						<div className='col'>
-							<p className='text-label'>Card Company</p>
-							<p>{user.payment.cardCompany}</p>
+							<p className='text-label'>Payment type</p>
+							<p>{user.payment.type}.toUpperCase()</p>
 						</div>
 
 						<div className='col'>
 							<p className='text-label'>Name on card</p>
-							<p>{user.payment.nameOnCard}</p>
+							<p>{user.payment[0].name}</p>
 						</div>
 
 						<div className='col'>
 							<p className='text-label'>Card number</p>
-							<p>{user.payment.cardNumber}</p>
+							<p>{user.payment[0].pan}</p>
 						</div>
 
 						<div className='col'>
 							<p className='text-label'>Expiration date</p>
-							<p>{user.payment.expirationDate}</p>
+							<p>{user.payment[0].expiration}</p>
 						</div>
 					</div>
 				</div>
