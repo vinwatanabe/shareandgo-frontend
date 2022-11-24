@@ -41,7 +41,7 @@ class User extends Component {
 	};
 
 	// function to get user data
-	getUserData = async () => {
+	getUser = async () => {
 		try {
 			// Send user object to server
 			const res = await axios.get(
@@ -106,11 +106,12 @@ class User extends Component {
 		localStorage.removeItem('userID');
 		localStorage.removeItem('userFirstName');
 		localStorage.removeItem('userType');
+        localStorage.clear();
 		window.location.href = '/';
 	};
 
 	// function to login a user
-	async login(objUser) {
+	login = async (objUser) => {
 		try {
 			// Send user object to server
 			const res = await axios.post(
@@ -137,7 +138,7 @@ class User extends Component {
 	}
 
 	// function to get a user's evaluations
-	async getEvaluation() {
+	getEvaluation = async() => {
 		try {
 			// Send user object to server
 			const res = await axios.get(
