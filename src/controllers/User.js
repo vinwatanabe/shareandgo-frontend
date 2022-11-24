@@ -139,12 +139,10 @@ class User extends Component {
     async getEvaluation () {
         try {
             // Send user object to server
-            const res = await axios.get(process.env.REACT_APP_BACKEND_URL+"user/evaluation/"+localStorage.getItem("userID"),{
-                headers: {
-                    // Get user token from session storage
-                    'x-access-token': localStorage.getItem('userToken'),
-                },
-            });
+            const res = await axios.get(
+                process.env.REACT_APP_BACKEND_URL+"review/getrating/"+localStorage.getItem("userID"),
+                {headers: {'x-access-token': localStorage.getItem('userToken')}}
+            );
             if(res.data.error) {
                 // If error, send back error message
                 console.log(res);
