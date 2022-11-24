@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/Header.css';
 import ButtonSecondary from './ButtonSecondary';
 import LogoHeader from '../images/ShareGoLogo-header.svg';
+import User from '../controllers/User';
 
 const Header = () => {
 	return (
@@ -70,7 +71,7 @@ const Header = () => {
 									text='Log out'
 									className='col-6 col-lg-2 col-md-3 col-sm-3 col-xs-3 btn-white position-absolute bottom-0 start-50 translate-middle-x mb-5'
 									link='/'
-									clickAction=''
+									clickAction={User.logout}
 								/>
 							</div>
 						</div>
