@@ -3,14 +3,14 @@ import axios from 'axios';
 
 // Using local storage to store session and page-transition variables
 // as they persist in different tabs and even after closing the browser
-const localStorage = window.localStorage;
 
 class User extends Component {
-	  constructor(props) {
-    super(props)
-    this.state = {
-      user: []
-	}}
+	constructor(props) {
+		super(props);
+		this.state = {
+			user: [],
+		};
+	}
 	// function to register a user
 	// call syntax: User.register(values);
 	register = async (objUser) => {
@@ -111,7 +111,8 @@ class User extends Component {
 		localStorage.removeItem('userID');
 		localStorage.removeItem('userFirstName');
 		localStorage.removeItem('userType');
-        localStorage.clear();
+		localStorage.clear();
+
 		window.location.href = '/';
 	};
 
@@ -140,10 +141,10 @@ class User extends Component {
 			//
 			return err.response.data.error;
 		}
-	}
+	};
 
 	// function to get a user's evaluations
-	getEvaluation = async() => {
+	getEvaluation = async () => {
 		try {
 			// Send user object to server
 			const res = await axios.get(
@@ -162,12 +163,11 @@ class User extends Component {
 					return JSON.parse(res.data);
 				}
 				return [];
-
 			}
 		} catch (err) {
 			//
 			return err.response.data.error;
 		}
-	}
+	};
 }
 export default new User();
