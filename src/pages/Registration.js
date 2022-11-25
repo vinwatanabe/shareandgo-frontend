@@ -44,15 +44,16 @@ const Registration = () => {
 				accounttype: values.accountType,
 				password: values.password,
 			};
+
 			// call registration controller with user data
 			await User.register(user);
-			await Address.createAddress({	// Create address object
+			await Address.createAddress({
+				// Create address object
 				street: values.address,
 				city: values.city,
 				province: values.province,
 				zip: values.postalCode,
 			});
-
 
 			// Validate existing payment data: if exists, register payment method, if not, move forward
 			let payment = {};
