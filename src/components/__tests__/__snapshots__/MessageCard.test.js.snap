@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<a
+  href="/message-content"
+  onClick={[Function]}
+>
+  <div
+    className="ride-card"
+  >
+    <div
+      className="photo"
+    >
+      <figure
+        className="driver-picture"
+      >
+        <img
+          alt="Mathew Pitts"
+          src="profile-picture-mockup.jpg"
+        />
+      </figure>
+    </div>
+    <div
+      className="driver-info"
+    >
+      <p
+        className="text-important"
+      >
+        Mathew Pitts
+      </p>
+      <div
+        className="destination d-flex align-items-center"
+      >
+        <span
+          className="material-symbols-outlined card-icon me-2"
+        >
+          directions_car
+        </span>
+        <p
+          className="details"
+        >
+          Abbotsford, BC
+        </p>
+      </div>
+    </div>
+    <div
+      className="ride-info"
+    >
+      <p
+        className="details new-message"
+      >
+        <span
+          className="material-symbols-outlined me-1"
+        >
+          circle
+        </span>
+        New
+      </p>
+      <p
+        className="ride-details"
+      >
+        10/15/2022
+      </p>
+      <p
+        className="ride-details"
+      >
+        9:45am
+      </p>
+    </div>
+  </div>
+</a>
+`;

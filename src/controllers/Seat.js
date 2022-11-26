@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 const localStorage = window.localStorage;
 
@@ -101,3 +102,4 @@ const updateSeat = async (rideID, seatID, seat) => {
 }
 
 export {createSeat, getAllSeats, getOneSeat, deleteSeat, updateSeat};
+

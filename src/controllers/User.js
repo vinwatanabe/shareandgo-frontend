@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 // Using local storage to store session and page-transition variables
 // as they persist in different tabs and even after closing the browser
@@ -164,3 +165,4 @@ const getEvaluation = async () => {
 };
 
 export { registerUser, isLoggedIn, getUser, updateUser, logout, login, getEvaluation };
+

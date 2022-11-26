@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="search-destination col-12 col-md-8 mb-5 mx-auto"
+>
+  <form>
+    <div>
+      <input
+        className="form-control search-input"
+        id="search-destination"
+        onChange={[Function]}
+        placeholder="Where are you going?"
+        type="text"
+      />
+      <a
+        className="btn btn-primary btn-search"
+        href="/passenger-destination"
+        onClick={[Function]}
+      >
+        <span
+          className="material-symbols-outlined"
+        >
+          search
+        </span>
+      </a>
+    </div>
+  </form>
+</div>
+`;
