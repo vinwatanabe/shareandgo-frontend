@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/Header.css';
 import ButtonSecondary from './ButtonSecondary';
 import LogoHeader from '../images/ShareGoLogo-header.svg';
-import User from '../controllers/User';
+import { getUser, logout } from '../controllers/User';
 import { Context } from '../context/AuthContext';
 
 const Header = () => {
@@ -15,7 +15,7 @@ const Header = () => {
 
 			if (token) {
 				const userInfo = async () => {
-					const user = await User.getUser();
+					const user = await getUser();
 					setUserData(user);
 				};
 				userInfo();
@@ -117,7 +117,7 @@ const Header = () => {
 									text='Log out'
 									className='col-6 col-lg-2 col-md-3 col-sm-3 col-xs-3 btn-white position-absolute bottom-0 start-50 translate-middle-x mb-5'
 									link='/'
-									clickAction={User.logout}
+									clickAction={logout}
 								/>
 							</div>
 						</div>

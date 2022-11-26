@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ShareGoIcon from '../images/ShareGo-icon.svg';
 import ButtonPrimary from '../components/ButtonPrimary';
-import User from '../controllers/User';
+import { login } from '../controllers/User';
 import { Context } from '../context/AuthContext';
 
 const Login = () => {
@@ -32,7 +32,7 @@ const Login = () => {
 			};
 
 			// call login controller with user data
-			const res = await User.login(user);
+			const res = await login(user);
 			if (res !== 'success') {
 				setError(res);
 			} else {
