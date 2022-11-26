@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+Array [
+  <figure
+    className="passenger-picture"
+  >
+    <img
+      alt="Betty Wallace"
+      src="profile-picture-mockup.jpg"
+    />
+  </figure>,
+  <p
+    className="ms-2"
+  >
+    Betty Wallace
+  </p>,
+]
+`;

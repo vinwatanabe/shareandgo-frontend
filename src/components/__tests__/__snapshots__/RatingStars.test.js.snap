@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <i
+    className="star"
+  >
+    <span
+      className="material-symbols-outlined filled"
+      id={0}
+    >
+      star
+    </span>
+  </i>
+  <i
+    className="star"
+  >
+    <span
+      className="material-symbols-outlined filled"
+      id={1}
+    >
+      star
+    </span>
+  </i>
+  <i
+    className="star"
+  >
+    <span
+      className="material-symbols-outlined filled"
+      id={2}
+    >
+      star
+    </span>
+  </i>
+  <i
+    className="star"
+  >
+    <span
+      className="material-symbols-outlined"
+      id={3}
+    >
+      star
+    </span>
+  </i>
+  <i
+    className="star"
+  >
+    <span
+      className="material-symbols-outlined"
+      id={4}
+    >
+      star
+    </span>
+  </i>
+</div>
+`;

@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<nav
+  className="navbar navbar-dark bg-dark mb-5"
+>
+  <div
+    className="container d-flex align-items-center"
+  >
+    <a
+      className="nav-brand flex-fill text-center"
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        alt="Share & Go Logo"
+        src="ShareGoLogo-header.svg"
+      />
+    </a>
+    <div
+      aria-labelledby="offcanvasDarkNavbarLabel"
+      className="offcanvas offcanvas-top text-bg-dark"
+      id="offcanvasDarkNavbar"
+      tabIndex="-1"
+    >
+      <div
+        className="offcanvas-header"
+      >
+        <h5
+          className="offcanvas-title mx-auto d-block"
+          id="offcanvasDarkNavbarLabel"
+        >
+          <img
+            alt="Share & Go"
+            src="ShareGoLogo-header.svg"
+          />
+        </h5>
+        <button
+          aria-label="Close"
+          className="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          type="button"
+        />
+      </div>
+      <div
+        className="offcanvas-body"
+      >
+        <ul
+          className="navbar-nav flex-grow-1 pe-3 position-absolute top-50 start-50 translate-middle"
+        >
+          <li
+            className="nav-item text-center"
+            data-bs-dismiss="offcanvas"
+          >
+            <a
+              className="nav-link"
+              href="/user-account"
+              onClick={[Function]}
+            >
+              My Account
+            </a>
+          </li>
+          <li
+            className="nav-item text-center"
+            data-bs-dismiss="offcanvas"
+          >
+            <a
+              className="nav-link"
+              href="/messages"
+              onClick={[Function]}
+            >
+              Messages
+            </a>
+          </li>
+        </ul>
+        <div
+          className="row"
+          data-bs-dismiss="offcanvas"
+        >
+          <a
+            className="btn btn-secondary col-6 col-lg-2 col-md-3 col-sm-3 col-xs-3 btn-white position-absolute bottom-0 start-50 translate-middle-x mb-5"
+            href="/"
+            onClick={[Function]}
+          >
+            Log out
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
