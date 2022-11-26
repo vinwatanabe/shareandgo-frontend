@@ -3,11 +3,7 @@ import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
-
-	useNavigate,
-
 	Navigate,
-
 } from 'react-router-dom';
 import './App.css';
 import { Context, AuthContext } from './context/AuthContext';
@@ -15,10 +11,7 @@ import Gateway from './pages/Gateway';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
 import MainPassenger from './pages/MainPassenger';
-
-
 import MainDriver from './pages/MainDriver';
-
 import DestinationPassenger from './pages/DestinationPassenger';
 import AvailableDrivers from './pages/AvailableDrivers';
 import RideInfo from './pages/RideInfo';
@@ -35,20 +28,12 @@ function App() {
 	function ProtectedRoute({ children }) {
 		const { authenticated, loading } = useContext(Context);
 
-		let navigate = useNavigate();
-
-
-
 		if (loading) {
 			return <h1>Loading...</h1>;
 		}
 
 		if (!authenticated) {
-
-			return navigate('/');
-
 			return <Navigate to='/' />;
-
 		} else {
 			return children;
 		}
@@ -73,8 +58,6 @@ function App() {
 								}
 							/>
 							<Route
-
-
 								path='/main-driver'
 								element={
 									<ProtectedRoute>
@@ -83,7 +66,6 @@ function App() {
 								}
 							/>
 							<Route
-
 								path='/passenger-destination'
 								element={
 									<ProtectedRoute>

@@ -1,17 +1,9 @@
-
-import React from 'react';
-
 import React, { useContext, useEffect } from 'react';
-
 import { Link } from 'react-router-dom';
 import '../css/Header.css';
 import ButtonSecondary from './ButtonSecondary';
 import LogoHeader from '../images/ShareGoLogo-header.svg';
 import User from '../controllers/User';
-
-
-const Header = () => {
-
 import { Context } from '../context/AuthContext';
 
 const Header = () => {
@@ -71,33 +63,10 @@ const Header = () => {
 		</Link>
 	);
 
-
 	return (
 		<>
 			<nav className='navbar navbar-dark bg-dark mb-5'>
 				<div className='container d-flex align-items-center'>
-
-					<button
-						className='navbar-toggler'
-						type='button'
-						data-bs-toggle='offcanvas'
-						data-bs-target='#offcanvasDarkNavbar'
-						aria-controls='offcanvasDarkNavbar'>
-						<span className='material-symbols-outlined icon'>menu</span>
-					</button>
-
-					<Link
-						to={'/main-passenger'}
-						className='nav-brand flex-fill text-center'>
-						<img src={LogoHeader} alt='Share & Go Logo' />
-					</Link>
-
-					<Link to={'/messages'}>
-						<span className='material-symbols-outlined icon filled'>
-							notifications
-						</span>
-					</Link>
-
 					{authenticated ? navToggler : <></>}
 
 					{userData.accounttype === 'driver'
@@ -107,7 +76,6 @@ const Header = () => {
 						: noLink}
 
 					{authenticated ? notification : <></>}
-
 
 					<div
 						className='offcanvas offcanvas-top text-bg-dark'
