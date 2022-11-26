@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import ButtonPrimary from '../components/ButtonPrimary';
+
+
+const UserAccountEdit = () => {
+	const [values, setValues] = useState('');
+
 import InputMask from 'react-input-mask';
 import User from '../controllers/User';
 
@@ -26,6 +31,7 @@ const UserAccountEdit = () => {
 	(user.length === 0) && getUserInfo();
 	console.log(values);
 
+
 	function handleChange(event) {
 		const auxValues = { ...values };
 		auxValues[event.target.id] = event.target.value;
@@ -43,7 +49,9 @@ const UserAccountEdit = () => {
 						placeholder='First Name'
 						className='form-control'
 						onChange={(e) => handleChange(e)}
+
 						value={user.firstname}
+
 					/>
 				</div>
 
@@ -54,7 +62,9 @@ const UserAccountEdit = () => {
 						placeholder='Last Name'
 						className='form-control'
 						onChange={(e) => handleChange(e)}
+
 						value={user.lastname}
+
 					/>
 				</div>
 
@@ -65,7 +75,9 @@ const UserAccountEdit = () => {
 						placeholder='Email'
 						className='form-control'
 						onChange={(e) => handleChange(e)}
+
 						value={user.email}
+
 					/>
 				</div>
 
@@ -78,6 +90,7 @@ const UserAccountEdit = () => {
 						placeholder='Phone Number'
 						className='form-control'
 						onChange={(e) => handleChange(e)}
+
 						value={user.phone}
 					/>
 				</div>
@@ -90,6 +103,7 @@ const UserAccountEdit = () => {
 						className='form-control'
 						onChange={(e) => handleChange(e)}
 						value={address.address}
+
 					/>
 				</div>
 
@@ -100,19 +114,24 @@ const UserAccountEdit = () => {
 						placeholder='City'
 						className='form-control'
 						onChange={(e) => handleChange(e)}
+
 						value={address.city}
+
 					/>
 				</div>
 
 				<div className='col-md-6'>
+
 					<InputMask
 						mask='aa'
 						maskPlaceholder='-'
+
 						type='text'
 						id='province'
 						placeholder='Province'
 						className='form-control'
 						onChange={(e) => handleChange(e)}
+
 						value={address.province}
 					/>
 				</div>
@@ -127,6 +146,7 @@ const UserAccountEdit = () => {
 						className='form-control'
 						onChange={(e) => handleChange(e)}
 						value={address.zip}
+
 					/>
 				</div>
 
@@ -172,11 +192,15 @@ const UserAccountEdit = () => {
 						placeholder='Name on card'
 						className='form-control'
 						onChange={(e) => handleChange(e)}
+
 						value={payment.name}
+
 					/>
 				</div>
 
 				<div className='col-12'>
+
+
 					<InputMask
 						mask='9999 9999 9999 9999'
 						maskPlaceholder='-'
@@ -186,26 +210,33 @@ const UserAccountEdit = () => {
 						className='form-control'
 						onChange={(e) => handleChange(e)}
 						value={payment.pan}
+
 					/>
 				</div>
 
 				<div className='col-md-6'>
+
 					<InputMask
 						mask='99/99'
 						maskPlaceholder='mm/yy'
+
 						type='text'
 						id='expirationDate'
 						placeholder='Expiration Date'
 						className='form-control'
 						onChange={(e) => handleChange(e)}
+
 						value={payment.expiration}
+
 					/>
 				</div>
 
 				<div className='col-md-6'>
+
 					<InputMask
 						mask='9999'
 						maskPlaceholder=' '
+
 						type='text'
 						id='csc'
 						placeholder='CSC'

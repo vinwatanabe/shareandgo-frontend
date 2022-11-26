@@ -3,13 +3,17 @@ import ButtonPrimary from '../components/ButtonPrimary';
 import InputMask from 'react-input-mask';
 import User from '../controllers/User';
 import Payment from '../controllers/Payment';
+
 import Address from '../controllers/Address';
+
 
 // Canadian postal code mask
 const firstLetter = /(?!.*[DFIOQU])[A-VXY]/i;
 const letter = /(?!.*[DFIOQU])[A-Z]/i;
 const digit = /[0-9]/;
+
 const zipMask = [firstLetter, digit, letter, ' ', digit, letter, digit];
+
 
 const Registration = () => {
 	const [values, setValues] = useState('');
@@ -41,9 +45,13 @@ const Registration = () => {
 				lastname: values.lastName,
 				email: values.email,
 				phone: values.phone,
+
+				city: values.city,
+				province: values.province,
 				accounttype: values.accountType,
 				password: values.password,
 			};
+
 
 			// call registration controller with user data
 			await User.register(user);
@@ -54,6 +62,7 @@ const Registration = () => {
 				province: values.province,
 				zip: values.postalCode,
 			});
+
 
 			// Validate existing payment data: if exists, register payment method, if not, move forward
 			let payment = {};
@@ -288,6 +297,7 @@ const Registration = () => {
 				<div className='col-md-6'>
 					<input
 						type='text'
+
 						id='address'
 						placeholder='Address'
 						className='form-control'
@@ -298,6 +308,7 @@ const Registration = () => {
 				<div className='col-md-6'>
 					<input
 						type='text'
+
 						id='city'
 						placeholder='City'
 						className='form-control'
@@ -317,6 +328,7 @@ const Registration = () => {
 					/>
 				</div>
 
+
 				<div className='col-md-6'>
 					<InputMask
 						mask={zipMask}
@@ -328,6 +340,7 @@ const Registration = () => {
 						onChange={(e) => handleChange(e)}
 					/>
 				</div>
+
 
 				<div className='col-12'>
 					<select
