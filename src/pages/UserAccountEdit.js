@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ButtonPrimary from '../components/ButtonPrimary';
 import InputMask from 'react-input-mask';
-import User from '../controllers/User';
+import { getUser } from '../controllers/User';
 
 // Canadian postal code mask
 const firstLetter = /(?!.*[DFIOQU])[A-VXY]/i;
@@ -15,15 +15,13 @@ const UserAccountEdit = () => {
 	const [address, setAddress] = React.useState([]);
 	const [payment, setPayment] = React.useState([]);
 
-	const getUserInfo = async () => { 
-		const user = await User.getUser(); 
-		setUser(user); 
-		if(user.hasOwnProperty('address'))
-			setAddress(user.address[0]);
-		if(user.hasOwnProperty('payment'))
-			setPayment(user.payment[0]);
+	const getUserInfo = async () => {
+		const user = await getUser();
+		setUser(user);
+		if (user.hasOwnProperty('address')) setAddress(user.address[0]);
+		if (user.hasOwnProperty('payment')) setPayment(user.payment[0]);
 	};
-	(user.length === 0) && getUserInfo();
+	user.length === 0 && getUserInfo();
 	console.log(values);
 
 	function handleChange(event) {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import ButtonPrimary from '../components/ButtonPrimary';
 import InputMask from 'react-input-mask';
-import User from '../controllers/User';
-import Payment from '../controllers/Payment';
-import Address from '../controllers/Address';
+import { registerUser, isLoggedIn } from '../controllers/User';
+import { createPayment } from '../controllers/Payment';
+import { createAddress } from '../controllers/Address';
 
 // Canadian postal code mask
 const firstLetter = /(?!.*[DFIOQU])[A-VXY]/i;
@@ -46,8 +46,8 @@ const Registration = () => {
 			};
 
 			// call registration controller with user data
-			await User.register(user);
-			await Address.createAddress({
+			await registerUser(user);
+			await createAddress({
 				// Create address object
 				street: values.address,
 				city: values.city,
@@ -89,10 +89,10 @@ const Registration = () => {
 						transit: values.transitNumber,
 					};
 				}
-				Payment.createPayment(payment);
+				createPayment(payment);
 			}
 			// Check Session Storage
-			if (User.isLoggedIn()) {
+			if (isLoggedIn()) {
 				// redirect to main page
 				values.accountType === 'driver'
 					? (window.location.href = '/main-driver')
