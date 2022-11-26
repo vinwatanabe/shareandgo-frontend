@@ -26,7 +26,7 @@
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/@jest'",
     "eject": "react-scripts eject",
     "postinstall": "react-scripts build"
   },
@@ -54,6 +54,11 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "jest": "^27.5.1",
+    "react-test-renderer": "^18.2.0"
+  },
+  "transform":{
+    "\\.js$": "<rootDir>/node_modules/babel-jest"
   }
 }
