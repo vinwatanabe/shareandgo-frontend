@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <div
+    className="d-flex align-items-center mb-2"
+  >
+    <figure
+      className="passenger-picture"
+    >
+      <img
+        alt="Cara Moon"
+        src="profile-picture-mockup.jpg"
+      />
+    </figure>
+    <div
+      className="ms-2"
+    >
+      <p>
+        Cara Moon
+      </p>
+      <div>
+        <i
+          className="star"
+        >
+          <span
+            className="material-symbols-outlined filled"
+            id={0}
+          >
+            star
+          </span>
+        </i>
+        <i
+          className="star"
+        >
+          <span
+            className="material-symbols-outlined filled"
+            id={1}
+          >
+            star
+          </span>
+        </i>
+        <i
+          className="star"
+        >
+          <span
+            className="material-symbols-outlined filled"
+            id={2}
+          >
+            star
+          </span>
+        </i>
+        <i
+          className="star"
+        >
+          <span
+            className="material-symbols-outlined"
+            id={3}
+          >
+            star
+          </span>
+        </i>
+        <i
+          className="star"
+        >
+          <span
+            className="material-symbols-outlined"
+            id={4}
+          >
+            star
+          </span>
+        </i>
+      </div>
+    </div>
+  </div>
+  <div
+    className="col-12"
+  >
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus convallis est sit.
+    </p>
+  </div>
+</div>
+`;

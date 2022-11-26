@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<a
+  href="/ride-info"
+  onClick={[Function]}
+>
+  <div
+    className="ride-card"
+  >
+    <div
+      className="photo"
+    >
+      <figure
+        className="driver-picture"
+      >
+        <img
+          alt="Mathew Pitts"
+          src="profile-picture-mockup.jpg"
+        />
+      </figure>
+    </div>
+    <div
+      className="driver-info"
+    >
+      <p
+        className="text-important"
+      >
+        Mathew Pitts
+      </p>
+      <div>
+        <i
+          className="star"
+        >
+          <span
+            className="material-symbols-outlined filled"
+            id={0}
+          >
+            star
+          </span>
+        </i>
+        <i
+          className="star"
+        >
+          <span
+            className="material-symbols-outlined filled"
+            id={1}
+          >
+            star
+          </span>
+        </i>
+        <i
+          className="star"
+        >
+          <span
+            className="material-symbols-outlined filled"
+            id={2}
+          >
+            star
+          </span>
+        </i>
+        <i
+          className="star"
+        >
+          <span
+            className="material-symbols-outlined"
+            id={3}
+          >
+            star
+          </span>
+        </i>
+        <i
+          className="star"
+        >
+          <span
+            className="material-symbols-outlined"
+            id={4}
+          >
+            star
+          </span>
+        </i>
+      </div>
+      <p
+        className="ride-details"
+      >
+        From: 
+        700 Royal Street
+      </p>
+      <p
+        className="ride-details"
+      >
+        To: 
+        31254 Charlotte Avenue
+      </p>
+    </div>
+    <div
+      className="ride-info"
+    >
+      <p
+        className="ride-details"
+      >
+        10/15/2022
+      </p>
+      <p
+        className="ride-details"
+      >
+        9:45am
+      </p>
+      <br />
+      <p
+        className="text-important"
+      >
+        $58.42
+      </p>
+    </div>
+  </div>
+</a>
+`;
