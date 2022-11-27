@@ -19,8 +19,8 @@ const registerUser = async (objUser) => {
 			// If no error, save user data to session storage
 			localStorage.setItem('userToken', res.data.token);
 			localStorage.setItem('userID', res.data._id);
-			localStorage.setItem('userFirstName', objUser.firstName);
-			localStorage.setItem('userType', objUser.accountType);
+			localStorage.setItem('userFirstName', res.data.firstName);
+			localStorage.setItem('userType', res.data.accountType);
 		}
 		return 'success';
 	} catch (err) {
