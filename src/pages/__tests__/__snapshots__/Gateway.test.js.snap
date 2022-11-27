@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<section
+  className="col-10 col-sm-6 col-md-6 col-lg-4 position-absolute top-50 start-50 translate-middle"
+>
+  <figure
+    className="text-center"
+  >
+    <img
+      alt="Share & Go Logo"
+      className="mb-3 img-fluid"
+      src="ShareGoLogo.svg"
+    />
+  </figure>
+  <div
+    className="row row-cols-2 g-3 text-center"
+  >
+    <div
+      className="col"
+    >
+      <a
+        className="btn btn-primary col-12"
+        href="/registration"
+        onClick={[Function]}
+      >
+        Register
+      </a>
+    </div>
+    <div
+      className="col"
+    >
+      <a
+        className="btn btn-secondary col-12"
+        href="/login"
+        onClick={[Function]}
+      >
+        Login
+      </a>
+    </div>
+  </div>
+</section>
+`;
