@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import ButtonPrimary from '../components/ButtonPrimary';
 import InputMask from 'react-input-mask';
-import { registerUser, isLoggedIn } from '../controllers/User';
+import { registerUser, logout } from '../controllers/User';
 import { createPayment } from '../controllers/Payment';
 import { createAddress } from '../controllers/Address';
 
@@ -49,10 +50,11 @@ const Registration = () => {
 			await registerUser(user);
 			await createAddress({
 				// Create address object
-				street: values.address,
+				name: 'Default',
+				address: values.address,
 				city: values.city,
 				province: values.province,
-				zip: values.postalCode,
+				zip: values.zip,
 			});
 
 			// Validate existing payment data: if exists, register payment method, if not, move forward
@@ -67,11 +69,11 @@ const Registration = () => {
 				) {
 					payment = {
 						type: 'card',
-						name: values.nameCard,
 						pan: values.numberCard,
-						expiration: values.expirationCard,
+						name: values.nameCard,
+						expiration: values.expirationDate,
 						csc: values.csc,
-						address_id: values.zipCard,
+						address_id: values.zipCode,
 					};
 				}
 			} else {
@@ -91,13 +93,9 @@ const Registration = () => {
 				}
 				createPayment(payment);
 			}
-			// Check Session Storage
-			if (isLoggedIn()) {
-				// redirect to main page
-				values.accountType === 'driver'
-					? (window.location.href = '/main-driver')
-					: (window.location.href = '/main-passenger');
-			}
+
+			logout();
+			return <Navigate to='/login' />;
 		}
 	};
 
@@ -170,7 +168,7 @@ const Registration = () => {
 			<ButtonPrimary
 				text='Register'
 				className='col-6 col-md-3 mx-auto d-block'
-				// link='/main-passenger'
+				link=''
 				clickAction={handleSubmit}
 			/>
 		</div>
@@ -233,7 +231,7 @@ const Registration = () => {
 			<ButtonPrimary
 				text='Register'
 				className='col-6 col-md-3 mx-auto d-block'
-				//link='/main-passenger'
+				link=''
 				clickAction={handleSubmit}
 			/>
 		</div>

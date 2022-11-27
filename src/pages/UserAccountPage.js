@@ -26,6 +26,8 @@ const UserAccountPage = () => {
 
 	const { userData } = useContext(Context);
 
+	console.log(userData);
+
 	return (
 		<>
 			<div className='ride-info-card col-12'>
