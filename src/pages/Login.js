@@ -1,15 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import ShareGoIcon from '../images/ShareGo-icon.svg';
 import ButtonPrimary from '../components/ButtonPrimary';
-import { login } from '../controllers/User';
 import { Context } from '../context/AuthContext';
 
 const Login = () => {
 	const [values, setValues] = useState('');
 	const [error, setError] = useState('');
-	const { setAuthenticated } = useContext(Context);
-	let navigate = useNavigate();
+	const { handleSignIn } = useContext(Context);
 
 	function handleChange(event) {
 		const auxValues = { ...values };
@@ -24,27 +21,7 @@ const Login = () => {
 		if (!values.email) setError('Please enter an email address');
 		else if (!values.password) setError('Please enter a password');
 		else {
-			setError('');
-			// Prepare user object
-			const user = {
-				email: values.email,
-				password: values.password,
-			};
-
-			// call login controller with user data
-			const res = await login(user);
-			if (res !== 'success') {
-				setError(res);
-			} else {
-				const accountType = localStorage.getItem('userType');
-				setAuthenticated(true);
-
-				if (accountType === 'driver') {
-					return navigate('/main-driver');
-				} else if (accountType === 'passenger') {
-					return navigate('/main-passenger');
-				}
-			}
+			handleSignIn(values);
 		}
 	};
 

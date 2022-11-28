@@ -1,30 +1,32 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/Header.css';
+import { auth } from '../firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
+
 import ButtonSecondary from './ButtonSecondary';
 import LogoHeader from '../images/ShareGoLogo-header.svg';
-import { getUser, logout } from '../controllers/User';
 import { Context } from '../context/AuthContext';
 
 const Header = () => {
-	const { authenticated, userData, setUserData } = useContext(Context);
+	const { userData, setLoggedUser, handleSignOut, authenticated } =
+		useContext(Context);
+
+	const [accountType, setAccountType] = useState('');
+
+	onAuthStateChanged(auth, (currentUser) => {
+		setLoggedUser(currentUser);
+	});
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const token = localStorage.getItem('userToken');
-
-			if (token) {
-				const userInfo = async () => {
-					const user = await getUser();
-					setUserData(user);
-				};
-				userInfo();
-			}
-		};
-
-		fetchData();
-		console.log(userData);
-	}, [setUserData, userData]);
+		if (userData.accountType === 'Driver') {
+			setAccountType(userData.accountType);
+		} else if (userData.accountType === 'Passenger') {
+			setAccountType(userData.accountType);
+		} else {
+			setAccountType('');
+		}
+	}, [userData.accountType, accountType, setAccountType]);
 
 	const driverLink = (
 		<Link to={'/main-driver'} className='nav-brand flex-fill text-center'>
@@ -69,10 +71,10 @@ const Header = () => {
 				<div className='container d-flex align-items-center'>
 					{authenticated ? navToggler : <></>}
 
-					{userData.accounttype === 'driver'
-						? driverLink
-						: userData.accounttype === 'passenger'
+					{accountType === 'Passenger'
 						? passengerLink
+						: accountType === 'Driver'
+						? driverLink
 						: noLink}
 
 					{authenticated ? notification : <></>}
@@ -117,7 +119,7 @@ const Header = () => {
 									text='Log out'
 									className='col-6 col-lg-2 col-md-3 col-sm-3 col-xs-3 btn-white position-absolute bottom-0 start-50 translate-middle-x mb-5'
 									link='/'
-									clickAction={logout}
+									clickAction={handleSignOut}
 								/>
 							</div>
 						</div>

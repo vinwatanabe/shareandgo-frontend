@@ -34,7 +34,7 @@ const RideCard = ({
 					<p className='ride-details'>{date}</p>
 					<p className='ride-details'>{time}</p>
 					<br></br>
-					<p className='text-important'>{price}</p>
+					<p className='text-important'>${price}</p>
 				</div>
 			</div>
 		</Link>

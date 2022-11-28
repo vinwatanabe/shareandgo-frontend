@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
 import ButtonPrimary from '../components/ButtonPrimary';
 import InputMask from 'react-input-mask';
-import { registerUser, logout } from '../controllers/User';
-import { createPayment } from '../controllers/Payment';
-import { createAddress } from '../controllers/Address';
+import { Context } from '../context/AuthContext';
 
 // Canadian postal code mask
 const firstLetter = /(?!.*[DFIOQU])[A-VXY]/i;
@@ -13,6 +10,7 @@ const digit = /[0-9]/;
 const zipMask = [firstLetter, digit, letter, ' ', digit, letter, digit];
 
 const Registration = () => {
+	const { handleRegistration } = useContext(Context);
 	const [values, setValues] = useState('');
 	const [error, setError] = useState('');
 
@@ -35,67 +33,7 @@ const Registration = () => {
 		else if (values.confirmPassword !== values.password)
 			setError('Passwords do not match');
 		else {
-			setError('');
-			// Prepare user object
-			const user = {
-				firstname: values.firstName,
-				lastname: values.lastName,
-				email: values.email,
-				phone: values.phone,
-				accounttype: values.accountType,
-				password: values.password,
-			};
-
-			// call registration controller with user data
-			await registerUser(user);
-			await createAddress({
-				// Create address object
-				name: 'Default',
-				address: values.address,
-				city: values.city,
-				province: values.province,
-				zip: values.zip,
-			});
-
-			// Validate existing payment data: if exists, register payment method, if not, move forward
-			let payment = {};
-			if (values.accountType === 'passenger') {
-				if (
-					values.nameCard &&
-					values.numberCard &&
-					values.expirationDate &&
-					values.csc &&
-					values.zipCode
-				) {
-					payment = {
-						type: 'card',
-						pan: values.numberCard,
-						name: values.nameCard,
-						expiration: values.expirationDate,
-						csc: values.csc,
-						address_id: values.zipCode,
-					};
-				}
-			} else {
-				if (
-					values.bankName &&
-					values.institutionNumber &&
-					values.transitNumber &&
-					values.accountNumber
-				) {
-					payment = {
-						type: 'bank',
-						name: values.bankName,
-						pan: values.accountNumber,
-						institution: values.institutionNumber,
-						transit: values.transitNumber,
-					};
-				}
-				createPayment(payment);
-			}
-
-			logout();
-			return <Navigate to='/login' />;
+			handleRegistration(values);
 		}
 	};
 
@@ -154,7 +92,7 @@ const Registration = () => {
 						mask={zipMask}
 						maskPlaceholder='___ ___'
 						type='text'
-						id='zipCode'
+						id='cardZipCode'
 						placeholder='ZIP Code'
 						className='form-control'
 						onChange={(e) => handleChange(e)}
@@ -327,18 +265,6 @@ const Registration = () => {
 					/>
 				</div>
 
-				<div className='col-12'>
-					<select
-						name='accountType'
-						id='accountType'
-						className='form-select'
-						onChange={(e) => handleChange(e)}>
-						<option value='not-selected'>Select account type...</option>
-						<option value='passenger'>Passenger</option>
-						<option value='driver'>Driver</option>
-					</select>
-				</div>
-
 				<div className='col-md-6'>
 					<input
 						type='password'
@@ -358,11 +284,33 @@ const Registration = () => {
 						onChange={(e) => handleChange(e)}
 					/>
 				</div>
+
+				<div className='col-md-12'>
+					<input
+						type='text'
+						id='photo'
+						placeholder='Photo link'
+						className='form-control'
+						onChange={(e) => handleChange(e)}
+					/>
+				</div>
+
+				<div className='col-12'>
+					<select
+						name='accountType'
+						id='accountType'
+						className='form-select'
+						onChange={(e) => handleChange(e)}>
+						<option value='not-selected'>Select account type...</option>
+						<option value='Passenger'>Passenger</option>
+						<option value='Driver'>Driver</option>
+					</select>
+				</div>
 			</form>
 
-			{values.accountType === 'passenger'
+			{values.accountType === 'Passenger'
 				? passengerBank
-				: values.accountType === 'driver'
+				: values.accountType === 'Driver'
 				? driverBank
 				: ''}
 		</>

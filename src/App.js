@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import MainPassenger from './pages/MainPassenger';
 import MainDriver from './pages/MainDriver';
 import DestinationPassenger from './pages/DestinationPassenger';
+import DestinationDriver from './pages/DestinationDriver';
 import AvailableDrivers from './pages/AvailableDrivers';
 import RideInfo from './pages/RideInfo';
 import RideStatus from './pages/RideStatus';
@@ -74,6 +75,14 @@ function App() {
 								}
 							/>
 							<Route
+								path='/driver-destination'
+								element={
+									<ProtectedRoute>
+										<DestinationDriver />
+									</ProtectedRoute>
+								}
+							/>
+							<Route
 								path='/available-drivers'
 								element={
 									<ProtectedRoute>
@@ -82,10 +91,18 @@ function App() {
 								}
 							/>
 							<Route
-								path='/ride-info'
+								path='/ride-info/:id'
 								element={
 									<ProtectedRoute>
 										<RideInfo />
+									</ProtectedRoute>
+								}
+							/>
+							<Route
+								path='/create-ride'
+								element={
+									<ProtectedRoute>
+										<RideStatus status='creating' />
 									</ProtectedRoute>
 								}
 							/>

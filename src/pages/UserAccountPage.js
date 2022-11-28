@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/RideInfo.css';
 import '../css/UserAccountPage.css';
 import RatingStars from '../components/RatingStars';
 import ButtonSecondary from '../components/ButtonSecondary';
 import { Context } from '../context/AuthContext';
+import { auth } from '../firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const UserAccountPage = () => {
 	// Delete after implementation
@@ -24,9 +26,71 @@ const UserAccountPage = () => {
 		},
 	};
 
-	const { userData } = useContext(Context);
+	const { userData, setLoggedUser, loggedUser, handleDeleteUser } =
+		useContext(Context);
+	const [accountType, setAccountType] = useState('');
 
-	console.log(userData);
+	onAuthStateChanged(auth, (currentUser) => {
+		setLoggedUser(currentUser);
+	});
+
+	useEffect(() => {
+		if (userData.accountType === 'Driver') {
+			setAccountType(userData.accountType);
+		} else if (userData.accountType === 'Passenger') {
+			setAccountType(userData.accountType);
+		} else {
+			setAccountType('');
+		}
+	}, [userData.accountType, accountType, setAccountType]);
+
+	const driverPaymentInfo = (
+		<div className='row row-cols-1 row-cols-md-2 col-12 col-md-10 col-lg-8 col-xl-6 g-4 mx-auto text-center'>
+			<div className='col'>
+				<p className='text-label'>Bank Name</p>
+				<p>{userData.payment.bankName}</p>
+			</div>
+
+			<div className='col'>
+				<p className='text-label'>Institution Number</p>
+				<p>{userData.payment.institutionNumber}</p>
+			</div>
+
+			<div className='col'>
+				<p className='text-label'>Transit Number</p>
+				<p>{userData.payment.transitNumber}</p>
+			</div>
+
+			<div className='col'>
+				<p className='text-label'>Account Number</p>
+				<p>{userData.payment.accountNumber}</p>
+			</div>
+		</div>
+	);
+
+	const passengerPaymentInfo = (
+		<div className='row row-cols-1 row-cols-md-2 col-12 col-md-10 col-lg-8 col-xl-6 g-4 mx-auto text-center'>
+			<div className='col'>
+				<p className='text-label'>Card Number</p>
+				<p>{userData.payment.cardNumber}</p>
+			</div>
+
+			<div className='col'>
+				<p className='text-label'>Expiration Date</p>
+				<p>{userData.payment.cardExpirationDate}</p>
+			</div>
+
+			<div className='col'>
+				<p className='text-label'>CSC</p>
+				<p>{userData.payment.cardCsc}</p>
+			</div>
+
+			<div className='col'>
+				<p className='text-label'>Card Zip Code</p>
+				<p>{userData.payment.cardZipCode}</p>
+			</div>
+		</div>
+	);
 
 	return (
 		<>
@@ -35,12 +99,12 @@ const UserAccountPage = () => {
 					<figure className='driver-picture mx-auto mb-3'>
 						<img
 							src={userData.photo}
-							alt={userData.firstname + ' ' + userData.lastname}
+							alt={userData.firstName + ' ' + userData.lastName}
 						/>
 					</figure>
 
 					<h2 className='text-title'>
-						{userData.firstname + ' ' + userData.lastname}
+						{userData.firstName + ' ' + userData.lastName}
 					</h2>
 
 					<div className='rating'>
@@ -48,7 +112,7 @@ const UserAccountPage = () => {
 					</div>
 
 					<div className='text-center'>
-						<p>{userData.accounttype} account</p>
+						<p>{userData.accountType} account</p>
 						<p>
 							<Link to='/account/edit'>Edit account</Link>
 						</p>
@@ -58,7 +122,7 @@ const UserAccountPage = () => {
 				<div className='row row-cols-1 row-cols-md-2 col-12 col-md-10 col-lg-8 col-xl-6 g-4 mx-auto text-center'>
 					<div className='col'>
 						<p className='text-label'>Email</p>
-						<p>{userData.email}</p>
+						<p>{loggedUser.email}</p>
 					</div>
 
 					<div className='col'>
@@ -67,13 +131,18 @@ const UserAccountPage = () => {
 					</div>
 
 					<div className='col'>
+						<p className='text-label'>Street</p>
+						<p>{userData.address.street}</p>
+					</div>
+
+					<div className='col'>
 						<p className='text-label'>City</p>
-						<p>{user.city}</p>
+						<p>{userData.address.city}</p>
 					</div>
 
 					<div className='col'>
 						<p className='text-label'>Province</p>
-						<p>{user.province}</p>
+						<p>{userData.address.province}</p>
 					</div>
 
 					<div className='col'>
@@ -86,35 +155,14 @@ const UserAccountPage = () => {
 
 				<div className='mb-5'>
 					<h2 className='text-title text-center mb-4'>Payment information</h2>
-
-					<div className='row row-cols-1 row-cols-md-2 col-12 col-md-10 col-lg-8 col-xl-6 g-4 mx-auto text-center'>
-						<div className='col'>
-							<p className='text-label'>Card Company</p>
-							<p>{user.payment.cardCompany}</p>
-						</div>
-
-						<div className='col'>
-							<p className='text-label'>Name on card</p>
-							<p>{user.payment.nameOnCard}</p>
-						</div>
-
-						<div className='col'>
-							<p className='text-label'>Card number</p>
-							<p>{user.payment.cardNumber}</p>
-						</div>
-
-						<div className='col'>
-							<p className='text-label'>Expiration date</p>
-							<p>{user.payment.expirationDate}</p>
-						</div>
-					</div>
+					{accountType === 'Driver' ? driverPaymentInfo : passengerPaymentInfo}
 				</div>
 
 				<ButtonSecondary
 					text='Delete account'
 					className='col-8 col-xs-10 col-sm-6 col-md-4 col-lg-3 mx-auto d-block'
 					link='/'
-					clickAction=''
+					clickAction={(e) => handleDeleteUser(e)}
 				/>
 			</div>
 		</>
