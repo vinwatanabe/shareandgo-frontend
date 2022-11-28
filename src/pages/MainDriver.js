@@ -30,7 +30,6 @@ const MainDriver = () => {
 	};
 
 	execQuery();
-	console.log(userData);
 
 	return (
 		<>
