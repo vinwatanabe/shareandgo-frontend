@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import RequestImage from '../images/request.svg';
 import CarConfirmedImage from '../images/car-confirmed.svg';
 import ButtonPrimary from '../components/ButtonPrimary';
+import { Context } from '../context/AuthContext';
 
 const RideStatus = ({ status }) => {
+	const { setupRide, handleCreateRide } = useContext(Context);
+
 	const waitingDriver = {
 		image: 'RequestImage',
 		altImage: 'Illustration of two people sitted in a car',
@@ -20,6 +23,15 @@ const RideStatus = ({ status }) => {
 		text: 'Good news! Your ride was confirmed.',
 		buttonText: 'Ok',
 		buttonLink: '/main-passenger',
+	};
+
+	const creatingRide = {
+		image: 'RequestImage',
+		altImage: 'Illustration of two people sitted in a car',
+		title: `The total of your ride is $${setupRide.price}`,
+		text: 'The price will be divide between all the passenger of your ride',
+		buttonText: 'Accept and create ride',
+		buttonLink: '',
 	};
 
 	let statusPage = checkStatus();
@@ -41,6 +53,8 @@ const RideStatus = ({ status }) => {
 			return waitingDriver;
 		} else if (status === 'confirmed') {
 			return rideAccepted;
+		} else if (status === 'creating') {
+			return creatingRide;
 		}
 	}
 
@@ -57,20 +71,46 @@ const RideStatus = ({ status }) => {
 
 	checkStatus();
 
+	const btnCreate = (
+		<ButtonPrimary
+			text={statusPage.buttonText}
+			className='col-12 col-xs-10 col-sm-10 col-md-10 col-lg-6 mx-auto d-block'
+			link={statusPage.buttonLink}
+			clickAction={(e) => handleCreateRide(e, setupRide)}
+		/>
+	);
+
+	const btnAwaiting = (
+		<ButtonPrimary
+			text={statusPage.buttonText}
+			className='col-12 col-xs-10 col-sm-10 col-md-10 col-lg-6 mx-auto d-block'
+			link={statusPage.buttonLink}
+			clickAction=''
+		/>
+	);
+
+	const btnConfirmed = (
+		<ButtonPrimary
+			text={statusPage.buttonText}
+			className='col-12 col-xs-10 col-sm-10 col-md-10 col-lg-6 mx-auto d-block'
+			link={statusPage.buttonLink}
+			clickAction=''
+		/>
+	);
+
 	return (
 		<>
 			<div className=' col-10 col-xs-6 col-md-6 col-lg-6 text-center mx-auto'>
 				<figure className='mb-5'>{getImage()}</figure>
 
-				<h2 className='text-title'>Mathew {statusPage.title}</h2>
+				<h2 className='text-title'>{statusPage.title}</h2>
 				<p className='mb-4'>{statusPage.text}</p>
 
-				<ButtonPrimary
-					text={statusPage.buttonText}
-					className='col-8 col-xs-10 col-sm-6 col-md-4 col-lg-3 mx-auto d-block'
-					link={statusPage.buttonLink}
-					clickAction=''
-				/>
+				{status === 'waiting'
+					? btnAwaiting
+					: status === 'confirmed'
+					? btnConfirmed
+					: btnCreate}
 			</div>
 		</>
 	);

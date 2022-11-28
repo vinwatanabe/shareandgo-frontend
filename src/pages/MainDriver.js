@@ -1,48 +1,62 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import SearchBar from '../components/SearchBar';
 import RideCard from '../components/RideCard';
-import DriverImage from '../images/profile-picture-mockup.jpg'; //delete after implementation
+import { db } from '../firebaseConfig';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { Context } from '../context/AuthContext';
 
 const MainDriver = () => {
-	// Delete after implementation
-	const user = [
-		{ DriverImage },
-		'Mathew Pitts',
-		'700 Royal Street',
-		'31254 Charlotte Avenue',
-		'10/15/2022',
-		'9:45am',
-		'$58.42',
-		'/ride-info',
-	];
+	const { loggedUser, userData } = useContext(Context);
 
-	const allUsers = [];
+	const [rides, setRides] = useState([]);
 
-	for (let i = 0; i < 8; i++) {
-		allUsers.push(user);
-	}
+	const rideArray = [];
+
+	const q = query(
+		collection(db, 'rides'),
+		where('driver', '==', loggedUser.uid)
+	);
+
+	const execQuery = async () => {
+		try {
+			const querySnapshot = await getDocs(q);
+			querySnapshot.forEach((doc) => {
+				rideArray.push(doc.data());
+			});
+			setRides(rideArray);
+		} catch (err) {
+			console.log(err.message);
+		}
+	};
+
+	execQuery();
+	console.log(userData);
 
 	return (
 		<>
-			<SearchBar />
+			<SearchBar link='/driver-destination' />
 
 			<div>
 				<h2 className='text-title mb-4 text-center'>Next scheduled rides</h2>
 
 				<div className='row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3'>
-					{allUsers.map((userData, index) => {
+					{rides.map((data, index) => {
 						return (
 							<div className='col' key={index}>
 								<RideCard
-									driverPhoto={DriverImage}
-									driverName={userData[1]}
-									driverRating='3'
-									pickupLocation={userData[2]}
-									destination={userData[3]}
-									date={userData[4]}
-									time={userData[5]}
-									price={userData[6]}
-									link={userData[7]}
+									driverPhoto={userData.photo}
+									driverName={userData.firstName + ' ' + userData.lastName}
+									driverRating={userData.evaluation}
+									pickupLocation={data.currentLocation}
+									destination={data.destinationLocation}
+									date={data.rideDate}
+									time={data.rideTime}
+									price={
+										data.passengerNum === 0
+											? parseFloat(data.price).toFixed(2)
+											: (parseFloat(data.price) / data.passengerNum).toFixed(2)
+									}
+									link={`/ride-info/${data.uid}`}
 								/>
 							</div>
 						);

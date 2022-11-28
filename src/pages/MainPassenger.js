@@ -24,7 +24,7 @@ const MainPassenger = () => {
 
 	return (
 		<>
-			<SearchBar />
+			<SearchBar link='/passenger-destination' />
 
 			<div>
 				<h2 className='text-title mb-4 text-center'>Next scheduled rides</h2>
