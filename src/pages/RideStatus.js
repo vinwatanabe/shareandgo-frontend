@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import RequestImage from '../images/request.svg';
+import RequestImage from '../images/request-car.svg';
 import CarConfirmedImage from '../images/car-confirmed.svg';
 import ButtonPrimary from '../components/ButtonPrimary';
 import { Context } from '../context/AuthContext';
