@@ -1,32 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import RatingStars from '../components/RatingStars';
 import ButtonPrimary from '../components/ButtonPrimary';
 import ButtonSecondary from '../components/ButtonSecondary';
 import '../css/RideCompleteReview.css';
 import DriverImage from '../images/profile-picture-mockup.jpg';
+import { Context } from '../context/AuthContext';
 
 const RideCompleteReview = () => {
 	const [values, setValues] = useState('');
 	const [stars, setStars] = useState(0);
+
+	const { userData } = useContext(Context);
 
 	function handleChange(event) {
 		const auxValues = { ...values };
 		auxValues[event.target.id] = event.target.value;
 		setValues(auxValues);
 	}
-
-	//Include in the final implementation
-	/*let mergedData = {};
-
-	function handleDataMerge(event) {
-		event.preventDefault();
-		const starsNum = { starRating: stars };
-
-		mergedData = {
-			...starsNum,
-			...values,
-		};
-	}*/
 
 	// Delete after implementation
 	const ride = {
@@ -53,7 +43,51 @@ const RideCompleteReview = () => {
 				}
 			});
 		}
-	});
+	}, [stars]);
+
+	const btnPassenger = (
+		<div className='row'>
+			<div className='col'>
+				<ButtonPrimary
+					text='Send'
+					className='col-12'
+					link='/main-passenger'
+					clickAction=''
+				/>
+			</div>
+
+			<div className='col'>
+				<ButtonSecondary
+					text='Skip'
+					className='col-12'
+					link='/main-passenger'
+					clickAction=''
+				/>
+			</div>
+		</div>
+	);
+
+	const btnDriver = (
+		<div className='row'>
+			<div className='col'>
+				<ButtonPrimary
+					text='Send'
+					className='col-12'
+					link='/main-driver'
+					clickAction=''
+				/>
+			</div>
+
+			<div className='col'>
+				<ButtonSecondary
+					text='Skip'
+					className='col-12'
+					link='/main-driver'
+					clickAction=''
+				/>
+			</div>
+		</div>
+	);
 
 	return (
 		<>
@@ -83,25 +117,7 @@ const RideCompleteReview = () => {
 					</div>
 				</form>
 
-				<div className='row'>
-					<div className='col'>
-						<ButtonPrimary
-							text='Send'
-							className='col-12'
-							link='/main-passenger'
-							clickAction='' //{(e) => handleDataMerge(e)}
-						/>
-					</div>
-
-					<div className='col'>
-						<ButtonSecondary
-							text='Skip'
-							className='col-12'
-							link='/main-passenger'
-							clickAction=''
-						/>
-					</div>
-				</div>
+				{userData.accountType === 'Passenger' ? btnPassenger : btnDriver}
 			</div>
 		</>
 	);

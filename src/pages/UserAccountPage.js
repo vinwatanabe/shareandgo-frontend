@@ -9,23 +9,6 @@ import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
 const UserAccountPage = () => {
-	// Delete after implementation
-	const user = {
-		name: 'Ezra Melton',
-		evaluation: '4.2',
-		email: 'ezra.melton@gmail.com',
-		phone: '+1 778 386 9965',
-		city: 'New Westminster',
-		province: 'British Columbia',
-		password: '********',
-		payment: {
-			cardCompany: 'MasterCard',
-			nameOnCard: 'Ezra T. Melton',
-			cardNumber: '**********361',
-			expirationDate: '2025/06',
-		},
-	};
-
 	const { userData, setLoggedUser, loggedUser, handleDeleteUser } =
 		useContext(Context);
 	const [accountType, setAccountType] = useState('');
@@ -108,7 +91,7 @@ const UserAccountPage = () => {
 					</h2>
 
 					<div className='rating'>
-						<RatingStars rating={user.evaluation} />
+						<RatingStars rating={userData.evaluation} />
 					</div>
 
 					<div className='text-center'>

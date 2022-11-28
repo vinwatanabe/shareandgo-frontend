@@ -14,7 +14,7 @@ const SearchBar = ({ link }) => {
 	}
 
 	function handleDestination() {
-		setDestination(values.searchDestination);
+		setDestination(values);
 	}
 
 	return (
@@ -23,7 +23,7 @@ const SearchBar = ({ link }) => {
 				<div>
 					<input
 						type='text'
-						id='searchDestination'
+						id='destinationLocation'
 						placeholder='Where are you going?'
 						className='form-control search-input'
 						onChange={(e) => handleChange(e)}

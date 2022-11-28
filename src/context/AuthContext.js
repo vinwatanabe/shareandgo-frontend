@@ -24,7 +24,7 @@ const AuthContext = ({ children }) => {
 	const [loading, setLoading] = useState(true);
 	const [userData, setUserData] = useState({});
 	const [loggedUser, setLoggedUser] = useState({});
-	const [destination, setDestination] = useState('');
+	const [destination, setDestination] = useState({});
 	const [setupRide, setSetupRide] = useState({});
 	const navigate = useNavigate();
 
@@ -266,6 +266,19 @@ const AuthContext = ({ children }) => {
 			});
 	};
 
+	//Handle Cancel Ride
+	const handleFinishRide = async (id) => {
+		const docRef = doc(db, 'rides', id);
+
+		await deleteDoc(docRef)
+			.then(() => {
+				navigate('/ride-complete');
+			})
+			.catch((err) => {
+				console.log(err.message);
+			});
+	};
+
 	return (
 		<Context.Provider
 			value={{
@@ -288,6 +301,7 @@ const AuthContext = ({ children }) => {
 				handlesetUpRide,
 				handleCreateRide,
 				handleDestroyRide,
+				handleFinishRide,
 			}}>
 			{children}
 		</Context.Provider>
