@@ -11,7 +11,7 @@ import { Context } from '../context/AuthContext';
 
 const RideInfo = () => {
 	const rideId = useParams().id;
-	const { userData, handleDestroyRide } = useContext(Context);
+	const { userData, handleDestroyRide, handleFinishRide } = useContext(Context);
 	const [pageData, setPageData] = useState({});
 	const [pageUserData, setPageUserData] = useState({});
 	const [passengers, setPassengers] = useState([]);
@@ -71,7 +71,7 @@ const RideInfo = () => {
 					text='Finish ride'
 					className='col-12'
 					link=''
-					clickAction=''
+					clickAction={() => handleFinishRide(rideId)}
 				/>
 			</div>
 		</div>

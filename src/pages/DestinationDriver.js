@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ScheduleIcon from '../images/schedule.svg';
 import ButtonPrimary from '../components/ButtonPrimary';
 import { Context } from '../context/AuthContext';
@@ -12,6 +12,12 @@ const DestinationDriver = () => {
 		auxValues[event.target.id] = event.target.value;
 		setValues(auxValues);
 	}
+
+	useEffect(() => {
+		setValues(destination);
+	}, [destination]);
+
+	console.log(values);
 
 	const driverDetails = (
 		<>
@@ -86,8 +92,8 @@ const DestinationDriver = () => {
 							id='destinationLocation'
 							placeholder='Where are you going?'
 							className='form-control'
-							value={destination || values.destinationLocation}
 							onChange={(e) => handleChange(e)}
+							value={values.destinationLocation || ''}
 						/>
 					</div>
 

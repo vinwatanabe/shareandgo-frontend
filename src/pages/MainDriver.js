@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SearchBar from '../components/SearchBar';
 import RideCard from '../components/RideCard';
 import { db } from '../firebaseConfig';
@@ -10,26 +10,28 @@ const MainDriver = () => {
 
 	const [rides, setRides] = useState([]);
 
-	const rideArray = [];
+	useEffect(() => {
+		const rideArray = [];
 
-	const q = query(
-		collection(db, 'rides'),
-		where('driver', '==', loggedUser.uid)
-	);
+		const q = query(
+			collection(db, 'rides'),
+			where('driver', '==', loggedUser.uid)
+		);
 
-	const execQuery = async () => {
-		try {
-			const querySnapshot = await getDocs(q);
-			querySnapshot.forEach((doc) => {
-				rideArray.push(doc.data());
-			});
-			setRides(rideArray);
-		} catch (err) {
-			console.log(err.message);
-		}
-	};
+		const execQuery = async () => {
+			try {
+				const querySnapshot = await getDocs(q);
+				querySnapshot.forEach((doc) => {
+					rideArray.push(doc.data());
+				});
+				setRides(rideArray);
+			} catch (err) {
+				console.log(err.message);
+			}
+		};
 
-	execQuery();
+		execQuery();
+	}, [loggedUser.uid]);
 
 	return (
 		<>
