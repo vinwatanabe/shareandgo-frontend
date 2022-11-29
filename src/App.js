@@ -12,7 +12,6 @@ import Registration from './pages/Registration';
 import Login from './pages/Login';
 import MainPassenger from './pages/MainPassenger';
 import MainDriver from './pages/MainDriver';
-import DestinationPassenger from './pages/DestinationPassenger';
 import DestinationDriver from './pages/DestinationDriver';
 import AvailableDrivers from './pages/AvailableDrivers';
 import RideInfo from './pages/RideInfo';
@@ -63,14 +62,6 @@ function App() {
 								element={
 									<ProtectedRoute>
 										<MainDriver />
-									</ProtectedRoute>
-								}
-							/>
-							<Route
-								path='/passenger-destination'
-								element={
-									<ProtectedRoute>
-										<DestinationPassenger />
 									</ProtectedRoute>
 								}
 							/>

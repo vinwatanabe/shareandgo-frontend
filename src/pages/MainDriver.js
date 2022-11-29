@@ -6,7 +6,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { Context } from '../context/AuthContext';
 
 const MainDriver = () => {
-	const { loggedUser, userData } = useContext(Context);
+	const { loggedUser } = useContext(Context);
 
 	const [rides, setRides] = useState([]);
 
@@ -15,7 +15,7 @@ const MainDriver = () => {
 
 		const q = query(
 			collection(db, 'rides'),
-			where('driver', '==', loggedUser.uid)
+			where('driver.uid', '==', loggedUser.uid)
 		);
 
 		const execQuery = async () => {
@@ -45,9 +45,11 @@ const MainDriver = () => {
 						return (
 							<div className='col' key={index}>
 								<RideCard
-									driverPhoto={userData.photo}
-									driverName={userData.firstName + ' ' + userData.lastName}
-									driverRating={userData.evaluation}
+									driverPhoto={data.driver.photo}
+									driverName={
+										data.driver.firstName + ' ' + data.driver.lastName
+									}
+									driverRating={data.driver.evaluation}
 									pickupLocation={data.currentLocation}
 									destination={data.destinationLocation}
 									date={data.rideDate}

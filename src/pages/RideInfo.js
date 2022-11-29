@@ -11,11 +11,19 @@ import { Context } from '../context/AuthContext';
 
 const RideInfo = () => {
 	const rideId = useParams().id;
-	const { userData, handleDestroyRide, handleFinishRide } = useContext(Context);
+	const {
+		loggedUser,
+		userData,
+		handleDestroyRide,
+		handleFinishRide,
+		handleRequestRide,
+	} = useContext(Context);
 	const [pageData, setPageData] = useState({});
 	const [pageUserData, setPageUserData] = useState({});
 	const [passengers, setPassengers] = useState([]);
 	const [reviews, setReviews] = useState([]);
+	const [driverId, setDriverId] = useState('');
+	const [isPassengerInRide, setIsPassengerInRide] = useState(false);
 
 	useEffect(() => {
 		const getPageData = async () => {
@@ -27,6 +35,16 @@ const RideInfo = () => {
 					setPageData(docSnap.data());
 					setPassengers(docSnap.data().passengers);
 					setReviews(docSnap.data().reviews);
+					setDriverId(docSnap.data().driver.uid);
+
+					const allPassengers = docSnap.data().passengers;
+					allPassengers.forEach((p) => {
+						if (p.uid === loggedUser.uid) {
+							setIsPassengerInRide(true);
+						} else {
+							setIsPassengerInRide(false);
+						}
+					});
 				} else {
 					console.log('No such document!');
 				}
@@ -37,7 +55,7 @@ const RideInfo = () => {
 
 		const getPageUserData = async () => {
 			try {
-				const docRef = doc(db, 'users', pageData.driver);
+				const docRef = doc(db, 'users', driverId);
 				const docSnap = await getDoc(docRef);
 
 				if (docSnap.exists()) {
@@ -52,7 +70,7 @@ const RideInfo = () => {
 
 		getPageData();
 		getPageUserData();
-	}, [rideId, pageData.driver]);
+	}, [rideId, driverId, loggedUser.uid]);
 
 	const driverBtnStart = (
 		<div className='row row-cols-1 row-cols-md-2 g-4 mt-3'>
@@ -90,7 +108,16 @@ const RideInfo = () => {
 		<ButtonPrimary
 			text='Request Ride'
 			className='col-8 col-xs-10 col-sm-6 col-md-4 col-lg-3 mx-auto d-block'
-			link='/waiting-ride'
+			link=''
+			clickAction={() => handleRequestRide(rideId, pageData.passengerNum)}
+		/>
+	);
+
+	const passengerContactBtn = (
+		<ButtonPrimary
+			text='Contact driver'
+			className='col-8 col-xs-10 col-sm-6 col-md-4 col-lg-3 mx-auto d-block'
+			link='/messages'
 			clickAction=''
 		/>
 	);
@@ -164,7 +191,6 @@ const RideInfo = () => {
 
 					<div className='passenger d-flex row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3'>
 						{passengers.map((p, index) => {
-							//
 							return (
 								<div className='d-flex align-items-center' key={index}>
 									<PassengerCard image={p.photo} name={p.fullName} />
@@ -193,7 +219,11 @@ const RideInfo = () => {
 					</div>
 				</div>
 				<hr className='mt-5 mb-5' />
-				{userData.accountType === 'Driver' ? driverBtnEnd : passengerBtnEnd}
+				{userData.accountType === 'Driver'
+					? driverBtnEnd
+					: isPassengerInRide === true
+					? passengerContactBtn
+					: passengerBtnEnd}
 			</div>
 		</>
 	);

@@ -5,7 +5,8 @@ import { Context } from '../context/AuthContext';
 
 const DestinationDriver = () => {
 	const [values, setValues] = useState('');
-	const { destination, userData, handlesetUpRide } = useContext(Context);
+	const { destination, userData, handlesetUpRide, handleGetRides } =
+		useContext(Context);
 
 	function handleChange(event) {
 		const auxValues = { ...values };
@@ -16,8 +17,6 @@ const DestinationDriver = () => {
 	useEffect(() => {
 		setValues(destination);
 	}, [destination]);
-
-	console.log(values);
 
 	const driverDetails = (
 		<>
@@ -56,7 +55,7 @@ const DestinationDriver = () => {
 			text="Let's go"
 			className='col-6 col-md-3 mx-auto d-block'
 			link=''
-			clickAction=''
+			clickAction={() => handleGetRides(values)}
 		/>
 	);
 
