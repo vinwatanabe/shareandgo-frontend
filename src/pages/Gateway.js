@@ -6,22 +6,21 @@ import ButtonSecondary from '../components/ButtonSecondary';
 const Gateway = () => {
 	// check if user is logged in
 	const localStorage = window.localStorage;
-	const userID = localStorage.getItem("userID");
-	const userType = localStorage.getItem("userType");
-	if(userID && userType) {
+	const userID = localStorage.getItem('userID');
+	const userType = localStorage.getItem('userType');
+	if (userID && userType) {
 		// redirect to each user type's main page
-		if(userType === "passenger") {
-			window.location.href = "/main-passenger";
-		} else if(userType === "driver") {
-			window.location.href = "/main-driver";
+		if (userType === 'passenger') {
+			window.location.href = '/main-passenger';
+		} else if (userType === 'driver') {
+			window.location.href = '/main-driver';
 		}
-	}
-	else{
+	} else {
 		// cleanup session
-		localStorage.setItem("userToken", null);
-		localStorage.setItem("userID", null);
-		localStorage.setItem("userFirstName", null);
-		localStorage.setItem("userType", null);
+		localStorage.setItem('userToken', null);
+		localStorage.setItem('userID', null);
+		localStorage.setItem('userFirstName', null);
+		localStorage.setItem('userType', null);
 		localStorage.clear();
 	}
 	return (
