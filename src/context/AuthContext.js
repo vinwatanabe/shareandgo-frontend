@@ -15,6 +15,9 @@ import {
 	getDoc,
 	deleteDoc,
 	updateDoc,
+	query,
+	where,
+	getDocs,
 } from 'firebase/firestore';
 
 const Context = createContext();
@@ -26,6 +29,8 @@ const AuthContext = ({ children }) => {
 	const [loggedUser, setLoggedUser] = useState({});
 	const [destination, setDestination] = useState({});
 	const [setupRide, setSetupRide] = useState({});
+	const [rideData, setRideData] = useState([]);
+	const [rideSelection, setRideSelection] = useState({});
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -211,7 +216,13 @@ const AuthContext = ({ children }) => {
 			rideTime: values.rideTime,
 			numOfSeats: values.numOfSeats,
 			rideDetails: values.rideDetails,
-			driver: auth.currentUser.uid,
+			driver: {
+				uid: auth.currentUser.uid,
+				photo: userData.photo,
+				firstName: userData.firstName,
+				lastName: userData.lastName,
+				rating: userData.evaluation,
+			},
 			passengers: [{}],
 			passengerNum: 0,
 			price: '82.40',
@@ -279,6 +290,58 @@ const AuthContext = ({ children }) => {
 			});
 	};
 
+	//Handle Get Rides
+	const handleGetRides = async (values) => {
+		const rideDataArray = [];
+
+		const q = query(
+			collection(db, 'rides'),
+			where('destinationLocation', '==', values.destinationLocation)
+		);
+
+		try {
+			const querySnapshot = await getDocs(q);
+			querySnapshot.forEach((doc) => {
+				rideDataArray.push(doc.data());
+			});
+		} catch (err) {
+			console.log(err.message);
+		}
+
+		setRideData(rideDataArray);
+		setRideSelection(values);
+
+		navigate('/available-drivers');
+	};
+
+	// Handle Request Ride
+	const handleRequestRide = async (rideId, numOfPassengers) => {
+		try {
+			const docRef = doc(db, 'rides', rideId);
+
+			await updateDoc(docRef, {
+				passengerNum: numOfPassengers + 1,
+				passengers: [
+					{
+						uid: loggedUser.uid,
+						firstName: userData.firstName,
+						lastName: userData.lastName,
+						fullName: userData.firstName + ' ' + userData.lastName,
+						photo: userData.photo,
+					},
+				],
+			})
+				.then(() => {
+					return navigate('/waiting-ride');
+				})
+				.catch((err) => {
+					console.log(err.message);
+				});
+		} catch (err) {
+			console.log(err.message);
+		}
+	};
+
 	return (
 		<Context.Provider
 			value={{
@@ -294,6 +357,10 @@ const AuthContext = ({ children }) => {
 				setDestination,
 				setupRide,
 				setSetupRide,
+				rideData,
+				setRideData,
+				rideSelection,
+				setRideSelection,
 				handleRegistration,
 				handleSignIn,
 				handleSignOut,
@@ -302,6 +369,8 @@ const AuthContext = ({ children }) => {
 				handleCreateRide,
 				handleDestroyRide,
 				handleFinishRide,
+				handleGetRides,
+				handleRequestRide,
 			}}>
 			{children}
 		</Context.Provider>

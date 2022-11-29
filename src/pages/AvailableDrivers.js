@@ -1,25 +1,44 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AvailableDriverCard from '../components/AvailableDriverCard';
-import DriverImage from '../images/profile-picture-mockup.jpg'; //delete after implementation
+import { Context } from '../context/AuthContext';
 
 const DriversAvailable = () => {
-	// Delete after implementation
-	const driver = {
-		name: 'Mathew Pitts',
-		rating: '4',
-		destination: 'Abbotsford, BC',
-		totalAvailableSeats: '5',
-		availableSeats: '3',
-		rideDate: '10/15/2022',
-		rideTime: '9:45am',
-		rideTotalPrice: '128.95',
-	};
+	const { rideData, rideSelection } = useContext(Context);
+	const [availableRides, setAvailableRides] = useState([]);
 
-	const allUsers = [];
+	useEffect(() => {
+		let selectedRides = [];
 
-	for (let i = 0; i < 20; i++) {
-		allUsers.push(driver);
-	}
+		rideData.forEach((ride) => {
+			if (rideSelection.rideDate === ride.rideDate) {
+				if (rideSelection.currentLocation === ride.currentLocation) {
+					selectedRides.push(ride);
+				}
+			}
+		});
+
+		setAvailableRides(selectedRides);
+	}, [rideData, rideSelection.currentLocation, rideSelection.rideDate]);
+
+	const rideCards = availableRides.map((r, index) => {
+		return (
+			<div className='col' key={index}>
+				<AvailableDriverCard
+					driverPhoto={r.driver.photo}
+					driverName={r.driver.firstName + ' ' + r.driver.lastName}
+					driverRating={r.driver.rating}
+					destination={r.destinationLocation}
+					availableSeats={r.numOfSeats}
+					date={r.rideDate}
+					time={r.rideTime}
+					price={(parseFloat(r.price) / (parseInt(r.passengerNum) + 1)).toFixed(
+						2
+					)}
+					link={`/ride-info/${r.uid}`}
+				/>
+			</div>
+		);
+	});
 
 	return (
 		<>
@@ -27,26 +46,11 @@ const DriversAvailable = () => {
 				<h2 className='text-title mb-4 text-center'>Available Drivers</h2>
 
 				<div className='row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3'>
-					{allUsers.map((userData, index) => {
-						return (
-							<div className='col' key={index}>
-								<AvailableDriverCard
-									driverPhoto={DriverImage}
-									driverName={driver.name}
-									driverRating={driver.rating}
-									destination={driver.destination}
-									availableSeats={driver.availableSeats}
-									date={driver.rideDate}
-									time={driver.rideTime}
-									price={(
-										driver.rideTotalPrice /
-										(driver.totalAvailableSeats - driver.availableSeats + 1)
-									).toFixed(2)}
-									link='/ride-info'
-								/>
-							</div>
-						);
-					})}
+					{availableRides.length === 0 ? (
+						<h2 className='text-title'>No rides available</h2>
+					) : (
+						rideCards
+					)}
 				</div>
 			</div>
 		</>
