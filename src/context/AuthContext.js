@@ -223,10 +223,10 @@ const AuthContext = ({ children }) => {
 				lastName: userData.lastName,
 				rating: userData.evaluation,
 			},
-			passengers: [{}],
+			passengers: [],
 			passengerNum: 0,
 			price: '82.40',
-			reviews: [{}],
+			reviews: [],
 		};
 
 		setSetupRide(rideSetup);
