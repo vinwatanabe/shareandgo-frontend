@@ -109,7 +109,9 @@ const RideInfo = () => {
 			text='Request Ride'
 			className='col-8 col-xs-10 col-sm-6 col-md-4 col-lg-3 mx-auto d-block'
 			link=''
-			clickAction={() => handleRequestRide(rideId, pageData.passengerNum)}
+			clickAction={() =>
+				handleRequestRide(rideId, pageData.passengerNum, pageData.passengers)
+			}
 		/>
 	);
 

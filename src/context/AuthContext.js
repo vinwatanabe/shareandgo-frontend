@@ -277,7 +277,7 @@ const AuthContext = ({ children }) => {
 			});
 	};
 
-	//Handle Cancel Ride
+	//Handle Finish Ride
 	const handleFinishRide = async (id) => {
 		const docRef = doc(db, 'rides', id);
 
@@ -315,21 +315,25 @@ const AuthContext = ({ children }) => {
 	};
 
 	// Handle Request Ride
-	const handleRequestRide = async (rideId, numOfPassengers) => {
+	const handleRequestRide = async (rideId, numOfPassengers, passengersList) => {
+		const passengersArray = passengersList;
+
+		const newPassenger = {
+			uid: loggedUser.uid,
+			firstName: userData.firstName,
+			lastName: userData.lastName,
+			fullName: userData.firstName + ' ' + userData.lastName,
+			photo: userData.photo,
+		};
+
+		passengersArray.push(newPassenger);
+
 		try {
 			const docRef = doc(db, 'rides', rideId);
 
 			await updateDoc(docRef, {
 				passengerNum: numOfPassengers + 1,
-				passengers: [
-					{
-						uid: loggedUser.uid,
-						firstName: userData.firstName,
-						lastName: userData.lastName,
-						fullName: userData.firstName + ' ' + userData.lastName,
-						photo: userData.photo,
-					},
-				],
+				passengers: passengersArray,
 			})
 				.then(() => {
 					return navigate('/waiting-ride');
